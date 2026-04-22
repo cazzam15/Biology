@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Free Nat 5 Biology Revision — Scotland</title>
+<meta name="description" content="Free Nat 5 Biology revision for Scotland. SQA-verified questions, flashcards, worksheets, mock test and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --card: #1c2330;
+  --border: #30363d;
+  --accent: #3fb950;
+  --accent-glow: rgba(63,185,80,0.15);
+  --accent2: #f85149;
+  --accent3: #d29922;
+  --accent4: #58a6ff;
+  --accent5: #bc8cff;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --radius: 12px;
+  --nav-h: 56px;
+  font-size: 15px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+button{font-family:'Nunito',sans-serif;cursor:pointer}
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+  padding:0 16px;height:54px;
+}
+.topbar-logo{
+  font-size:1.1rem;font-weight:900;color:var(--text);
+  display:flex;align-items:center;gap:6px;flex:1;
+}
+.topbar-logo span{color:var(--accent)}
+.xp-pill{
+  display:flex;align-items:center;gap:6px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:100px;padding:5px 10px;font-size:0.75rem;
+  font-weight:700;font-family:'DM Mono',monospace;
+}
+.xp-pill .xp-val{color:var(--accent3)}
+.streak-pill{
+  display:flex;align-items:center;gap:4px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:100px;padding:5px 10px;font-size:0.75rem;
+  font-weight:700;
+}
+.streak-pill .fire{font-size:1rem}
+.lv-badge{
+  background:var(--accent5);color:#fff;border-radius:100px;
+  padding:3px 9px;font-size:0.7rem;font-weight:800;
+}
+
+/* ── NAV TABS ── */
+.nav-scroll{
+  display:flex;overflow-x:auto;gap:4px;
+  padding:8px 12px;background:var(--surface);
+  border-bottom:1px solid var(--border);
+  scrollbar-width:none;
+}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-btn{
+  flex-shrink:0;display:flex;align-items:center;gap:5px;
+  background:transparent;border:1.5px solid transparent;
+  border-radius:100px;padding:6px 13px;
+  font-size:0.78rem;font-weight:700;color:var(--muted);
+  white-space:nowrap;transition:all 0.15s;
+}
+.nav-btn:hover{color:var(--text);border-color:var(--border)}
+.nav-btn.active{
+  background:var(--accent-glow);border-color:var(--accent);
+  color:var(--accent);
+}
+.nav-btn .nb-icon{font-size:1rem}
+
+/* ── PAGES ── */
+.page{display:none;padding:16px;max-width:700px;margin:0 auto;padding-bottom:80px}
+.page.active{display:block;animation:fadeIn 0.2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HERO (Practice page) ── */
+.hero{
+  background:linear-gradient(135deg,#1a2840 0%,#1c2f1e 100%);
+  border:1px solid var(--border);border-radius:16px;
+  padding:20px;margin-bottom:16px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'🧬';position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-size:4rem;opacity:0.12;
+}
+.hero h1{font-size:1.4rem;font-weight:900;line-height:1.2;margin-bottom:4px}
+.hero h1 span{color:var(--accent)}
+.hero p{font-size:0.82rem;color:var(--muted)}
+
+/* ── DAILY GOAL BAR ── */
+.goal-bar{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.goal-bar-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.goal-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),#7ee787);border-radius:4px;transition:width 0.5s}
+.goal-label{font-size:0.75rem;color:var(--muted);font-family:'DM Mono',monospace;white-space:nowrap}
+.goal-val{font-weight:800;color:var(--accent)}
+
+/* ── SELECTORS ── */
+.selector-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.selector{
+  flex:1;min-width:120px;background:var(--card);
+  border:1.5px solid var(--border);border-radius:10px;
+  padding:8px 10px;color:var(--text);font-family:'Nunito',sans-serif;
+  font-size:0.82rem;font-weight:600;outline:none;
+  appearance:none;cursor:pointer;
+}
+.selector:focus{border-color:var(--accent4)}
+.selector option{background:var(--card)}
+
+/* ── QUESTION CARD ── */
+.q-card{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:16px;padding:20px;margin-bottom:14px;
+  animation:fadeIn 0.25s ease;
+}
+.q-card-header{
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;
+}
+.q-tag{
+  background:rgba(88,166,255,0.12);border:1px solid rgba(88,166,255,0.25);
+  color:var(--accent4);border-radius:100px;padding:2px 10px;
+  font-size:0.68rem;font-family:'DM Mono',monospace;letter-spacing:1px;
+}
+.q-tag.hard{background:rgba(248,81,73,0.12);border-color:rgba(248,81,73,0.25);color:var(--accent2)}
+.q-tag.easy{background:rgba(63,185,80,0.12);border-color:rgba(63,185,80,0.25);color:var(--accent)}
+.q-num{font-size:0.72rem;color:var(--muted);font-family:'DM Mono',monospace;margin-left:auto}
+.q-text{font-size:1rem;font-weight:700;line-height:1.45;margin-bottom:16px}
+
+/* MCQ options */
+.opts{display:grid;gap:9px}
+.opt-btn{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:10px;padding:11px 14px;
+  text-align:left;color:var(--text);font-size:0.88rem;font-weight:600;
+  transition:all 0.15s;
+}
+.opt-btn:hover:not(:disabled){border-color:var(--accent4);background:rgba(88,166,255,0.06)}
+.opt-letter{
+  font-family:'DM Mono',monospace;font-size:0.72rem;
+  background:var(--border);border-radius:6px;
+  width:24px;height:24px;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all 0.15s;font-weight:500;
+}
+.opt-btn:hover:not(:disabled) .opt-letter{background:var(--accent4);color:#0d1117}
+.opt-btn.correct{border-color:var(--accent);background:rgba(63,185,80,0.1)}
+.opt-btn.correct .opt-letter{background:var(--accent);color:#0d1117}
+.opt-btn.wrong{border-color:var(--accent2);background:rgba(248,81,73,0.1)}
+.opt-btn.wrong .opt-letter{background:var(--accent2);color:#fff}
+.opt-btn:disabled{cursor:default}
+
+/* fill-in */
+.fill-input{
+  width:100%;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:10px;padding:11px 14px;color:var(--text);font-size:0.95rem;
+  font-family:'Nunito',sans-serif;outline:none;margin-bottom:10px;transition:border-color 0.2s;
+}
+.fill-input:focus{border-color:var(--accent4)}
+.fill-input.correct{border-color:var(--accent)}
+.fill-input.wrong{border-color:var(--accent2)}
+
+/* action buttons */
+.btn-row{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.btn{
+  flex:1;min-width:90px;padding:11px 16px;border-radius:10px;
+  font-size:0.85rem;font-weight:800;border:none;transition:all 0.15s;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-green{background:var(--accent);color:#0d1117}
+.btn-blue{background:transparent;border:1.5px solid var(--accent4);color:var(--accent4)}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{color:var(--text);border-color:var(--muted)}
+.btn-red{background:transparent;border:1.5px solid var(--accent2);color:var(--accent2)}
+
+/* explanation */
+.explanation{
+  margin-top:12px;background:rgba(63,185,80,0.06);
+  border:1px solid rgba(63,185,80,0.2);border-radius:10px;
+  padding:12px 14px;font-size:0.82rem;line-height:1.6;
+  display:none;animation:fadeIn 0.2s ease;
+}
+.explanation.show{display:block}
+.explanation .expl-label{color:var(--accent);font-weight:800;margin-bottom:4px}
+
+/* ── XP TOAST ── */
+.xp-toast{
+  position:fixed;top:70px;right:16px;z-index:999;
+  background:var(--accent);color:#0d1117;
+  border-radius:100px;padding:8px 16px;
+  font-weight:800;font-size:0.85rem;
+  opacity:0;transform:translateY(-10px);transition:all 0.3s;pointer-events:none;
+}
+.xp-toast.show{opacity:1;transform:translateY(0)}
+
+/* ── SECTION LABELS ── */
+.section-label{
+  font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;font-family:'DM Mono',monospace;
+}
+.section-title{
+  font-size:1.1rem;font-weight:900;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+
+/* ── TOPIC CARDS ── */
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+.topic-card{
+  background:var(--card);border:1.5px solid var(--border);border-radius:14px;
+  padding:16px 14px;cursor:pointer;transition:all 0.18s;position:relative;overflow:hidden;
+}
+.topic-card.sel{border-color:var(--accent);background:rgba(63,185,80,0.08)}
+.topic-card:hover{transform:translateY(-2px);border-color:var(--accent4)}
+.topic-icon{font-size:1.6rem;margin-bottom:8px}
+.topic-name{font-size:0.82rem;font-weight:800;line-height:1.2}
+.topic-count{font-size:0.7rem;color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace}
+.topic-sub-text{font-size:0.65rem;color:var(--muted);margin-top:6px;line-height:1.3;opacity:0.8}
+.topic-prog{height:3px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
+.topic-prog-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.5s}
+
+/* ── FLASHCARD ── */
+.fc-wrap{perspective:1200px;margin-bottom:16px;cursor:pointer}
+.fc-inner{
+  position:relative;min-height:200px;transform-style:preserve-3d;
+  transition:transform 0.5s cubic-bezier(.4,0,.2,1);
+}
+.fc-inner.flipped{transform:rotateY(180deg)}
+.fc-face{
+  position:absolute;width:100%;min-height:200px;
+  backface-visibility:hidden;background:var(--card);
+  border:1.5px solid var(--border);border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  padding:28px 24px;text-align:center;
+}
+.fc-back{transform:rotateY(180deg)}
+.fc-label{font-size:0.68rem;color:var(--accent);font-family:'DM Mono',monospace;letter-spacing:2px;margin-bottom:12px}
+.fc-text{font-size:1.05rem;font-weight:700;line-height:1.45}
+.fc-body{width:100%}
+.fc-hint{font-size:0.78rem;color:var(--muted);text-align:center;margin-bottom:12px}
+.fc-nav{display:flex;gap:10px}
+.fc-nav-btn{
+  flex:1;padding:11px;border-radius:10px;font-weight:800;font-size:0.85rem;
+  background:transparent;transition:all 0.15s;
+}
+.fc-nav-btn.knew{border:1.5px solid var(--accent);color:var(--accent)}
+.fc-nav-btn.knew:hover{background:rgba(63,185,80,0.1)}
+.fc-nav-btn.skip{border:1.5px solid var(--accent2);color:var(--accent2)}
+.fc-nav-btn.skip:hover{background:rgba(248,81,73,0.1)}
+.fc-progress{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  font-size:0.75rem;color:var(--muted);font-family:'DM Mono',monospace;
+}
+.fc-progress-track{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.fc-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent4));border-radius:2px;transition:width 0.4s}
+
+/* ── PROGRESS BARS (quiz) ── */
+.q-progress{height:4px;background:var(--border);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.q-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent4));border-radius:2px;transition:width 0.4s}
+
+/* ── RESULTS ── */
+.results-hero{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px;text-align:center;margin-bottom:16px;animation:fadeIn 0.4s ease;
+}
+.score-ring{width:130px;height:130px;margin:0 auto 16px;position:relative}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring-text{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.score-big{font-size:2.2rem;font-weight:900;line-height:1}
+.score-lbl{font-size:0.68rem;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px}
+.grade-pill{
+  display:inline-block;font-weight:900;font-size:1.1rem;
+  padding:6px 20px;border-radius:100px;margin-bottom:10px;
+}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.res-item{background:var(--surface);border-radius:10px;padding:12px;text-align:center;font-family:'DM Mono',monospace}
+.res-val{font-size:1.3rem;font-weight:700}
+.res-key{font-size:0.65rem;color:var(--muted);margin-top:2px;letter-spacing:1px}
+
+/* ── MOCK EXAM ── */
+.exam-hero{
+  background:linear-gradient(135deg,#1a2840,#1e1a2e);
+  border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;
+}
+.exam-hero h2{font-size:1.1rem;font-weight:900;margin-bottom:6px}
+.exam-hero p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+.exam-cards{display:grid;gap:12px;margin-bottom:16px}
+.exam-card{
+  background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:18px;
+  display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.18s;
+}
+.exam-card:hover{border-color:var(--accent4);transform:translateY(-1px)}
+.exam-card .ec-icon{font-size:2rem}
+.exam-card .ec-title{font-weight:900;font-size:0.95rem}
+.exam-card .ec-desc{font-size:0.78rem;color:var(--muted);margin-top:2px}
+.exam-timer-bar{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:10px 16px;margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.exam-timer-val{font-family:'DM Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--accent3)}
+.exam-marks{font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--muted);margin-left:auto}
+
+/* ── FORMULA SHEET ── */
+.formula-section{margin-bottom:20px}
+.formula-section h3{
+  font-size:0.9rem;font-weight:800;color:var(--accent4);
+  margin-bottom:10px;padding-bottom:6px;
+  border-bottom:1px solid var(--border);
+}
+.formula-cards{display:grid;gap:8px}
+.formula-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;
+}
+.formula-name{font-size:0.75rem;color:var(--muted);margin-bottom:4px;font-weight:700}
+.formula-val{font-family:'DM Mono',monospace;font-size:0.88rem;color:var(--text);line-height:1.6}
+
+/* ── LINKS PAGE ── */
+.links-grid{display:grid;gap:10px}
+.link-card{
+  background:var(--card);border:1.5px solid var(--border);border-radius:14px;
+  padding:14px 16px;text-decoration:none;color:var(--text);
+  display:flex;align-items:center;gap:12px;transition:all 0.15s;
+}
+.link-card:hover{border-color:var(--accent4);transform:translateX(4px)}
+.link-icon{font-size:1.6rem;flex-shrink:0}
+.link-title{font-weight:800;font-size:0.9rem}
+.link-desc{font-size:0.75rem;color:var(--muted);margin-top:2px}
+
+/* ── SETTINGS PAGE ── */
+.settings-card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:16px;margin-bottom:12px;
+}
+.settings-card h3{font-size:0.85rem;font-weight:800;color:var(--accent4);margin-bottom:12px}
+.setting-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.setting-label{font-size:0.85rem;flex:1}
+.setting-input{
+  background:var(--surface);border:1.5px solid var(--border);border-radius:8px;
+  padding:6px 10px;color:var(--text);font-family:'Nunito',sans-serif;
+  font-size:0.85rem;outline:none;width:100px;
+}
+.setting-input:focus{border-color:var(--accent4)}
+
+/* ── PROGRESS PAGE ── */
+.prog-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+.prog-stat{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:14px;text-align:center;
+}
+.prog-stat-val{font-size:1.6rem;font-weight:900;color:var(--accent)}
+.prog-stat-key{font-size:0.72rem;color:var(--muted);margin-top:2px;font-family:'DM Mono',monospace}
+.prog-topic-row{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:12px 14px;margin-bottom:8px;
+}
+.prog-topic-name{font-size:0.85rem;font-weight:700;flex:1}
+.prog-topic-bar-wrap{flex:2}
+.prog-topic-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.prog-topic-fill{height:100%;background:var(--accent);border-radius:4px;transition:width 0.5s}
+.prog-topic-pct{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);width:36px;text-align:right}
+
+/* ── WORKSHEET styles (inline) ── */
+.ws-section-head{
+  font-size:0.88rem;font-weight:900;color:var(--accent);
+  margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);
+}
+.ws-q{
+  background:var(--card);border:1.5px solid var(--border);border-radius:14px;
+  padding:16px;margin-bottom:12px;transition:border-color 0.2s;
+}
+.ws-q.ok{border-color:var(--accent)}
+.ws-q.bad{border-color:var(--accent2)}
+.ws-qlabel{font-size:0.65rem;font-family:'DM Mono',monospace;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.ws-qtext{font-weight:700;font-size:0.93rem;line-height:1.4;margin-bottom:11px}
+.ws-opts2{display:grid;gap:7px}
+.ws-opt2{
+  display:flex;align-items:center;gap:9px;
+  background:var(--surface);border:1.5px solid var(--border);border-radius:9px;
+  padding:9px 13px;cursor:pointer;font-size:0.83rem;font-weight:600;
+  transition:all 0.14s;color:var(--text);
+}
+.ws-opt2:hover:not(:disabled){border-color:var(--accent4)}
+.ws-opt2 .wol{
+  font-family:'DM Mono',monospace;font-size:0.68rem;background:var(--border);
+  border-radius:5px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ws-opt2.wc{border-color:var(--accent);background:rgba(63,185,80,0.1)}
+.ws-opt2.wc .wol{background:var(--accent);color:#0d1117}
+.ws-opt2.ww{border-color:var(--accent2);background:rgba(248,81,73,0.1)}
+.ws-opt2.ww .wol{background:var(--accent2);color:#fff}
+.ws-opt2:disabled{cursor:default}
+.ws-eq{
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  padding:12px 14px;font-family:'DM Mono',monospace;font-size:0.82rem;
+  line-height:2.4;margin-bottom:10px;
+}
+.eq-in{
+  background:transparent;border:none;border-bottom:2px solid var(--accent4);
+  color:var(--text);font-family:'DM Mono',monospace;font-size:0.82rem;
+  min-width:90px;text-align:center;outline:none;padding:0 4px;
+}
+.eq-in.ec{border-color:var(--accent);color:var(--accent)}
+.eq-in.ew{border-color:var(--accent2);color:var(--accent2)}
+.ws-ta{
+  width:100%;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:9px;padding:10px 13px;color:var(--text);font-size:0.85rem;
+  font-family:'Nunito',sans-serif;outline:none;resize:vertical;min-height:70px;
+  margin-bottom:10px;transition:border-color 0.2s;
+}
+.ws-ta:focus{border-color:var(--accent4)}
+.ws-ta.ec{border-color:var(--accent)}
+.ws-ta.ew{border-color:var(--accent2)}
+.ws-check{
+  background:transparent;border:1.5px solid var(--accent4);color:var(--accent4);
+  border-radius:8px;padding:7px 15px;font-family:'Nunito',sans-serif;
+  font-weight:800;font-size:0.78rem;cursor:pointer;transition:all 0.14s;
+}
+.ws-check:hover{background:rgba(88,166,255,0.1)}
+.ws-check:disabled{opacity:0.4;cursor:default}
+.ws-reveal{
+  margin-top:10px;background:rgba(63,185,80,0.06);border:1px solid rgba(63,185,80,0.2);
+  border-radius:8px;padding:10px 13px;font-size:0.8rem;line-height:1.55;display:none;
+}
+.ws-reveal.show{display:block}
+.ws-reveal strong{color:var(--accent)}
+.pun-tbl{border-collapse:collapse}
+.pun-tbl td,.pun-tbl th{border:1.5px solid var(--border);width:68px;height:48px;text-align:center;vertical-align:middle}
+.pun-tbl th{background:rgba(63,185,80,0.1);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:600}
+.pun-in{background:transparent;border:none;outline:none;text-align:center;font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--text);width:60px;cursor:pointer}
+.pun-cell{background:var(--surface)}
+.pun-cell.pc{background:rgba(63,185,80,0.15);color:var(--accent)}
+.pun-cell.pw{background:rgba(248,81,73,0.12);color:var(--accent2)}
+.ws-score-strip{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;
+}
+.ws-score-num{font-size:1.5rem;font-weight:900;color:var(--accent);font-family:'DM Mono',monospace}
+.ws-score-detail{flex:1}
+.ws-score-msg{font-size:0.78rem;color:var(--muted)}
+.ws-score-track{height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden}
+.ws-score-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.5s}
+.ws-tab-row{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+.ws-tab-row::-webkit-scrollbar{display:none}
+.ws-tab{
+  flex-shrink:0;background:var(--card);border:1.5px solid var(--border);border-radius:100px;
+  padding:7px 14px;cursor:pointer;font-weight:800;font-size:0.78rem;color:var(--muted);transition:all 0.15s;
+}
+.ws-tab:hover{color:var(--text)}
+.ws-tab.wta{border-color:var(--accent);color:var(--accent);background:rgba(63,185,80,0.08)}
+.ws-sheet2{display:none}
+.ws-sheet2.wsa{display:block;animation:fadeIn 0.25s ease}
+.ws-action-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+
+/* ── EXAM TIPS ── */
+.tip-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:13px 15px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;
+}
+.tip-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.tip-text{font-size:0.82rem;line-height:1.5}
+.tip-text strong{color:var(--accent)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:480px){
+  .res-grid{grid-template-columns:1fr 1fr}
+  .prog-stat-grid{grid-template-columns:1fr 1fr}
+  .topic-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- XP Toast -->
+<div class="xp-toast" id="xp-toast">+10 XP ⭐</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Nat 5 <span>Biology</span></div>
+  <div class="xp-pill">⭐ <span class="xp-val" id="xp-val">0</span> XP</div>
+  <div class="streak-pill"><span class="fire">🔥</span><span id="streak-val">0</span></div>
+  <div class="lv-badge" id="lv-badge">Lv 1</div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-scroll">
+  <button class="nav-btn active" onclick="nav('practice')" data-page="practice"><span class="nb-icon">📚</span> Practice</button>
+  <button class="nav-btn" onclick="nav('flashcards')" data-page="flashcards"><span class="nb-icon">🃏</span> Flashcards</button>
+  <button class="nav-btn" onclick="nav('worksheet')" data-page="worksheet"><span class="nb-icon">📝</span> Worksheets</button>
+  <button class="nav-btn" onclick="nav('mock')" data-page="mock"><span class="nb-icon">📋</span> Mock Exam</button>
+  <button class="nav-btn" onclick="nav('topics')" data-page="topics"><span class="nb-icon">🗂</span> Topics</button>
+  <button class="nav-btn" onclick="nav('formulas')" data-page="formulas"><span class="nb-icon">🔬</span> Key Facts</button>
+  <button class="nav-btn" onclick="nav('progress')" data-page="progress"><span class="nb-icon">📊</span> Progress</button>
+  <button class="nav-btn" onclick="nav('links')" data-page="links"><span class="nb-icon">🔗</span> Links</button>
+  <button class="nav-btn" onclick="nav('settings')" data-page="settings"><span class="nb-icon">⚙️</span> Settings</button>
+</div>
+
+<!-- ═══════════════ PRACTICE PAGE ═══════════════ -->
+<div class="page active" id="page-practice">
+  <div class="hero">
+    <h1>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Nat 5 <span>Biology</span><br>Scotland</h1>
+    <p>SQA-verified · 78 questions · 3 units · earn XP as you go!</p>
+  </div>
+
+  <div class="goal-bar" id="goal-bar">
+    <span style="font-size:1.1rem">🎯</span>
+    <div class="goal-bar-track"><div class="goal-bar-fill" id="goal-fill" style="width:0%"></div></div>
+    <div class="goal-label">Daily Goal <span class="goal-val" id="goal-txt">0/10</span></div>
+  </div>
+
+  <div class="section-label">Choose topic & mode</div>
+  <div class="selector-row">
+    <select class="selector" id="topic-sel">
+      <option value="all">🎲 Random Mix</option>
+      <option value="cell_bio">🔬 Cell Biology</option>
+      <option value="multicell">🦠 Multicellular Organisms</option>
+      <option value="life_earth">🌍 Life on Earth</option>
+    </select>
+    <select class="selector" id="type-sel">
+      <option value="all">All Types</option>
+      <option value="mcq">Multiple Choice</option>
+      <option value="fillin">Fill in Blank</option>
+    </select>
+  </div>
+
+  <div id="q-progress-wrap">
+    <div class="q-progress"><div class="q-progress-fill" id="q-progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <div id="question-area">
+    <div class="q-card">
+      <div style="text-align:center;color:var(--muted);padding:20px">
+        <div style="font-size:2rem;margin-bottom:10px">🔬</div>
+        Press New Question to start!
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row" style="margin-top:0">
+    <button class="btn btn-green" onclick="newQuestion()">⟳ New Question</button>
+    <button class="btn btn-ghost" onclick="nav('mock')">📋 Mock Exam</button>
+  </div>
+</div>
+
+<!-- ═══════════════ FLASHCARDS PAGE ═══════════════ -->
+<div class="page" id="page-flashcards">
+  <div class="section-title">🃏 Flashcards</div>
+
+  <div class="selector-row" style="margin-bottom:12px">
+    <select class="selector" id="fc-topic-sel">
+      <option value="all">All Topics</option>
+      <option value="cell_bio">🔬 Cell Biology</option>
+      <option value="multicell">🦠 Multicellular Organisms</option>
+      <option value="life_earth">🌍 Life on Earth</option>
+    </select>
+    <button class="btn btn-blue" onclick="startFlashcards()" style="flex:0;padding:8px 16px;border-radius:10px;font-size:0.82rem">▶ Start</button>
+  </div>
+
+  <div class="fc-progress">
+    <span id="fc-prog-txt">0 / 0</span>
+    <div class="fc-progress-track"><div class="fc-progress-fill" id="fc-prog-fill" style="width:0%"></div></div>
+    <span style="color:var(--accent)">✓ <span id="fc-knew-txt">0</span></span>
+  </div>
+
+  <div class="fc-hint" id="fc-hint">👆 Tap the card to flip it</div>
+
+  <div class="fc-wrap" onclick="flipCard()" id="fc-wrap">
+    <div class="fc-inner" id="fc-inner">
+      <div class="fc-face fc-front">
+        <div class="fc-body">
+          <div class="fc-label">QUESTION</div>
+          <div class="fc-text" id="fc-front-text">Select a topic and press Start to begin</div>
+        </div>
+      </div>
+      <div class="fc-face fc-back">
+        <div class="fc-body">
+          <div class="fc-label" style="color:var(--accent4)">ANSWER</div>
+          <div class="fc-text" id="fc-back-text" style="font-size:0.92rem;font-weight:600;color:var(--text)">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-nav">
+    <button class="fc-nav-btn skip" onclick="fcNext(false)">✕ Didn't know</button>
+    <button class="fc-nav-btn knew" onclick="fcNext(true)">✓ Got it!</button>
+  </div>
+</div>
+
+<!-- ═══════════════ WORKSHEET PAGE ═══════════════ -->
+<div class="page" id="page-worksheet">
+  <div class="section-title">📝 Interactive Worksheets</div>
+  <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px">SQA-style written questions · instant feedback · self-marked</p>
+
+  <div id="ws-score-strip" class="ws-score-strip" style="display:none">
+    <div class="ws-score-num" id="ws-score-num">0/0</div>
+    <div class="ws-score-detail">
+      <div class="ws-score-msg" id="ws-score-msg">Answer questions to see your score</div>
+      <div class="ws-score-track"><div class="ws-score-fill" id="ws-score-fill2" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="ws-tab-row">
+    <button class="ws-tab wta" onclick="wsSwitchSheet(0)">🔬 Cell Biology</button>
+    <button class="ws-tab" onclick="wsSwitchSheet(1)">🦠 Multicellular</button>
+    <button class="ws-tab" onclick="wsSwitchSheet(2)">🌍 Life on Earth</button>
+  </div>
+
+  <!-- SHEET 0: Cell Biology -->
+  <div class="ws-sheet2 wsa" id="wss-0">
+    <div style="background:rgba(88,166,255,0.07);border:1px solid rgba(88,166,255,0.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:0.78rem;color:var(--accent4);line-height:1.5">
+      <strong>📋 SQA Key Areas:</strong> Cell structure · Transport across membranes · DNA & protein production · Proteins & enzymes · Genetic engineering · Respiration
+    </div>
+    <div class="ws-section-head">Section A — Cell Structure & Transport</div>
+
+    <div class="ws-q" id="wq-cb1" data-done="0">
+      <div class="ws-qlabel">Q1 · Multiple Choice</div>
+      <div class="ws-qtext">Which of the following organelles is found in plant cells BUT NOT in animal cells?</div>
+      <div class="ws-opts2">
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb1',this,true)"><span class="wol">A</span>Chloroplast</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb1',this,false)"><span class="wol">B</span>Mitochondria</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb1',this,false)"><span class="wol">C</span>Ribosome</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb1',this,false)"><span class="wol">D</span>Nucleus</div>
+      </div>
+      <div class="ws-reveal" id="wq-cb1-r"><strong>✓ A — Chloroplast.</strong> Plant cells also have a cell wall (cellulose) and large permanent vacuole — not found in animal cells. Both share mitochondria, ribosomes, nucleus, cell membrane, and cytoplasm.</div>
+    </div>
+
+    <div class="ws-q" id="wq-cb2" data-done="0">
+      <div class="ws-qlabel">Q2 · Multiple Choice</div>
+      <div class="ws-qtext">A plant cell is placed in a concentrated salt solution. What happens?</div>
+      <div class="ws-opts2">
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb2',this,false)"><span class="wol">A</span>Cell bursts (lysis) — too much water enters</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb2',this,false)"><span class="wol">B</span>Cell swells and becomes turgid</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb2',this,true)"><span class="wol">C</span>Cell becomes plasmolysed — membrane pulls from wall</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb2',this,false)"><span class="wol">D</span>Nothing happens — plant cells are unaffected</div>
+      </div>
+      <div class="ws-reveal" id="wq-cb2-r"><strong>✓ C — Plasmolysis.</strong> Water leaves by osmosis (high water conc. inside → low outside). Vacuole and cytoplasm shrink, membrane pulls away from cell wall. In dilute solution the reverse happens — the cell becomes turgid.</div>
+    </div>
+
+    <div class="ws-q" id="wq-cb3" data-done="0">
+      <div class="ws-qlabel">Q3 · Fill in the Blanks — Osmosis Definition</div>
+      <div class="ws-qtext">Complete the definition:</div>
+      <div class="ws-eq">
+        Osmosis is the movement of <input class="eq-in" id="eq3a" placeholder="?"> molecules from
+        <input class="eq-in" id="eq3b" placeholder="????"> water concentration to
+        <input class="eq-in" id="eq3c" placeholder="???"> water concentration, through a
+        <input class="eq-in" id="eq3d" placeholder="????????????????" style="min-width:140px"> membrane.
+      </div>
+      <button class="ws-check" onclick="wsEq('wq-cb3',['eq3a','eq3b','eq3c','eq3d'],['water','high','low','selectively permeable'])">Check ✓</button>
+      <div class="ws-reveal" id="wq-cb3-r"><strong>✓</strong> Osmosis is the movement of <strong>water</strong> molecules from <strong>high</strong> water concentration to <strong>low</strong> water concentration, through a <strong>selectively permeable</strong> membrane.</div>
+    </div>
+
+    <div class="ws-q" id="wq-cb4" data-done="0">
+      <div class="ws-qlabel">Q4 · Short Answer (2 marks)</div>
+      <div class="ws-qtext">Explain how ACTIVE TRANSPORT differs from diffusion.</div>
+      <textarea class="ws-ta" id="wq-cb4-ta" placeholder="Write your answer here…"></textarea>
+      <button class="ws-check" onclick="wsReveal('wq-cb4')">Show Model Answer</button>
+      <div class="ws-reveal" id="wq-cb4-r"><strong>✓ Model answer:</strong><br>• Active transport moves molecules <strong>against</strong> the concentration gradient (low→high); diffusion moves molecules <strong>down</strong> the gradient (high→low). (1)<br>• Active transport requires <strong>ATP energy</strong> and carrier proteins; diffusion is passive and needs no energy. (1)</div>
+    </div>
+
+    <div class="ws-section-head">Section B — DNA, Proteins & Respiration</div>
+
+    <div class="ws-q" id="wq-cb5" data-done="0">
+      <div class="ws-qlabel">Q5 · Multiple Choice</div>
+      <div class="ws-qtext">In DNA, which base always pairs with Guanine (G)?</div>
+      <div class="ws-opts2">
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb5',this,false)"><span class="wol">A</span>Adenine (A)</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb5',this,false)"><span class="wol">B</span>Thymine (T)</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb5',this,true)"><span class="wol">C</span>Cytosine (C)</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-cb5',this,false)"><span class="wol">D</span>Uracil (U)</div>
+      </div>
+      <div class="ws-reveal" id="wq-cb5-r"><strong>✓ C — Cytosine.</strong> Complementary base pairing: A–T and G–C. This rule always holds in DNA. In RNA, Uracil replaces Thymine (so A pairs with U in RNA).</div>
+    </div>
+
+    <div class="ws-q" id="wq-cb6" data-done="0">
+      <div class="ws-qlabel">Q6 · Fill in the Blanks — Protein Synthesis</div>
+      <div class="ws-qtext">Complete the sentences about protein synthesis:</div>
+      <div class="ws-eq">
+        A <input class="eq-in" id="eq6a" placeholder="????"> is a section of DNA that codes for one protein.<br>
+        In the nucleus, <input class="eq-in" id="eq6b" placeholder="????"> is made from DNA by <input class="eq-in" id="eq6c" placeholder="?????????????">.<br>
+        This travels to the <input class="eq-in" id="eq6d" placeholder="?????????"> where <input class="eq-in" id="eq6e" placeholder="???????????"> builds the protein.
+      </div>
+      <button class="ws-check" onclick="wsEq('wq-cb6',['eq6a','eq6b','eq6c','eq6d','eq6e'],['gene','mrna','transcription','ribosome','translation'])">Check ✓</button>
+      <div class="ws-reveal" id="wq-cb6-r"><strong>✓</strong> A <strong>gene</strong> codes for one protein. In the nucleus, <strong>mRNA</strong> is made by <strong>transcription</strong>. It travels to the <strong>ribosome</strong> where <strong>translation</strong> builds the protein from amino acids.</div>
+    </div>
+
+    <div class="ws-q" id="wq-cb7" data-done="0">
+      <div class="ws-qlabel">Q7 · Fill in the Blanks — Respiration</div>
+      <div class="ws-qtext">Complete the respiration equations:</div>
+      <div class="ws-eq">
+        <strong>Aerobic:</strong> Glucose + <input class="eq-in" id="eq7a" placeholder="??????"> → CO₂ + <input class="eq-in" id="eq7b" placeholder="?????"> + ATP<br><br>
+        <strong>Anaerobic (yeast):</strong> Glucose → <input class="eq-in" id="eq7c" placeholder="???????"> + CO₂<br><br>
+        <strong>Anaerobic (muscle):</strong> Glucose → <input class="eq-in" id="eq7d" placeholder="???????????">
+      </div>
+      <button class="ws-check" onclick="wsEq('wq-cb7',['eq7a','eq7b','eq7c','eq7d'],['oxygen','water','ethanol','lactic acid'])">Check ✓</button>
+      <div class="ws-reveal" id="wq-cb7-r"><strong>✓</strong> Aerobic: Glucose + <strong>Oxygen</strong> → CO₂ + <strong>Water</strong> + ATP &nbsp;|&nbsp; Yeast: → <strong>Ethanol</strong> + CO₂ &nbsp;|&nbsp; Muscle: → <strong>Lactic acid</strong></div>
+    </div>
+
+    <div class="ws-q" id="wq-cb8" data-done="0">
+      <div class="ws-qlabel">Q8 · Short Answer (5 marks)</div>
+      <div class="ws-qtext">List the FIVE stages of genetic engineering used to produce insulin from bacteria, in order.</div>
+      <textarea class="ws-ta" id="wq-cb8-ta" placeholder="Stage 1:&#10;Stage 2:&#10;Stage 3:&#10;Stage 4:&#10;Stage 5:" style="min-height:100px"></textarea>
+      <button class="ws-check" onclick="wsReveal('wq-cb8')">Show Model Answer</button>
+      <div class="ws-reveal" id="wq-cb8-r"><strong>✓ Five stages (1 mark each):</strong><br>1. <strong>Identify</strong> the section of DNA containing the insulin gene on the human chromosome. (1)<br>2. <strong>Extract</strong> the insulin gene using restriction enzymes. (1)<br>3. <strong>Extract a plasmid</strong> from a bacterial cell. (1)<br>4. <strong>Insert</strong> the gene into the plasmid using ligase enzymes. (1)<br>5. <strong>Insert</strong> modified plasmid into host bacterium → GMO produces human insulin. (1)</div>
+    </div>
+
+    <div class="ws-action-row">
+      <button class="btn btn-green" onclick="wsMarkAll(0)" style="flex:1">✓ Mark All</button>
+      <button class="btn btn-ghost" onclick="wsReset2(0)" style="flex:1">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- SHEET 1: Multicellular -->
+  <div class="ws-sheet2" id="wss-1">
+    <div style="background:rgba(88,166,255,0.07);border:1px solid rgba(88,166,255,0.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:0.78rem;color:var(--accent4);line-height:1.5">
+      <strong>📋 SQA Key Areas:</strong> Producing new cells (mitosis) · Control & communication · Reproduction · Variation & inheritance · Transport systems · Absorption
+    </div>
+    <div class="ws-section-head">Section A — Nervous System</div>
+
+    <div class="ws-q" id="wq-mc1" data-done="0">
+      <div class="ws-qlabel">Q1 · Multiple Choice</div>
+      <div class="ws-qtext">What is the correct sequence of structures in a reflex arc?</div>
+      <div class="ws-opts2">
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc1',this,true)"><span class="wol">A</span>Receptor → Sensory neuron → Relay neuron → Motor neuron → Effector</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc1',this,false)"><span class="wol">B</span>Receptor → Motor neuron → Relay neuron → Sensory neuron → Effector</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc1',this,false)"><span class="wol">C</span>Brain → Sensory neuron → Motor neuron → Effector</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc1',this,false)"><span class="wol">D</span>Effector → Relay neuron → Brain → Receptor</div>
+      </div>
+      <div class="ws-reveal" id="wq-mc1-r"><strong>✓ A.</strong> Receptor (detects stimulus) → Sensory neuron → Relay neuron (spinal cord) → Motor neuron → Effector (muscle/gland). The reflex bypasses conscious brain processing for speed.</div>
+    </div>
+
+    <div class="ws-q" id="wq-mc2" data-done="0">
+      <div class="ws-qlabel">Q2 · Short Answer (3 marks)</div>
+      <div class="ws-qtext">State the function of each part of the brain: (a) Cerebrum (b) Cerebellum (c) Medulla.</div>
+      <textarea class="ws-ta" id="wq-mc2-ta" placeholder="(a) Cerebrum:&#10;(b) Cerebellum:&#10;(c) Medulla:"></textarea>
+      <button class="ws-check" onclick="wsReveal('wq-mc2')">Show Model Answer</button>
+      <div class="ws-reveal" id="wq-mc2-r"><strong>✓ (1 mark each):</strong><br>(a) <strong>Cerebrum</strong>: conscious thought, memory, language, voluntary movement. (1)<br>(b) <strong>Cerebellum</strong>: balance, coordination, fine motor control. (1)<br>(c) <strong>Medulla</strong>: unconscious vital functions — heart rate, breathing rate, blood pressure. (1)</div>
+    </div>
+
+    <div class="ws-section-head">Section B — Blood Glucose & Hormones</div>
+
+    <div class="ws-q" id="wq-mc3" data-done="0">
+      <div class="ws-qlabel">Q3 · Fill in the Blanks — Blood Glucose Regulation</div>
+      <div class="ws-eq">
+        After eating, blood glucose rises. The <input class="eq-in" id="eq3ma" placeholder="?????????"> detects this and releases <input class="eq-in" id="eq3mb" placeholder="???????">.<br>
+        This causes the <input class="eq-in" id="eq3mc" placeholder="?????"> to convert glucose into <input class="eq-in" id="eq3md" placeholder="?????????"> for storage.<br>
+        When glucose falls too low, <input class="eq-in" id="eq3me" placeholder="?????????"> is released, converting glycogen back to glucose.
+      </div>
+      <button class="ws-check" onclick="wsEq('wq-mc3',['eq3ma','eq3mb','eq3mc','eq3md','eq3me'],['pancreas','insulin','liver','glycogen','glucagon'])">Check ✓</button>
+      <div class="ws-reveal" id="wq-mc3-r"><strong>✓</strong> <strong>Pancreas</strong> → releases <strong>insulin</strong> → <strong>liver</strong> stores glucose as <strong>glycogen</strong>. When low: <strong>glucagon</strong> released → glycogen → glucose. Negative feedback keeps blood glucose steady.</div>
+    </div>
+
+    <div class="ws-section-head">Section C — Variation & Inheritance</div>
+
+    <div class="ws-q" id="wq-mc4" data-done="0">
+      <div class="ws-qlabel">Q4 · Punnett Square (3 marks)</div>
+      <div class="ws-qtext">In pea plants, Tall (T) is dominant over dwarf (t). Cross Tt × Tt. Complete the Punnett square and state the phenotype ratio.</div>
+      <div style="margin:10px 0">
+        <table class="pun-tbl">
+          <tr><th style="background:transparent;border:none"></th><th>T</th><th>t</th></tr>
+          <tr><th>T</th>
+            <td class="pun-cell"><input class="pun-in" id="pun0" placeholder="?" maxlength="3"></td>
+            <td class="pun-cell"><input class="pun-in" id="pun1" placeholder="?" maxlength="3"></td>
+          </tr>
+          <tr><th>t</th>
+            <td class="pun-cell"><input class="pun-in" id="pun2" placeholder="?" maxlength="3"></td>
+            <td class="pun-cell"><input class="pun-in" id="pun3" placeholder="?" maxlength="3"></td>
+          </tr>
+        </table>
+      </div>
+      <button class="ws-check" onclick="wsPunnett('wq-mc4',['pun0','pun1','pun2','pun3'],['TT','Tt','Tt','tt'])">Check ✓</button>
+      <div class="ws-reveal" id="wq-mc4-r"><strong>✓</strong> TT | Tt | Tt | tt<br><strong>Phenotype ratio: 3 Tall : 1 Dwarf</strong> (TT and Tt are both tall as T is dominant)</div>
+    </div>
+
+    <div class="ws-q" id="wq-mc5" data-done="0">
+      <div class="ws-qlabel">Q5 · Multiple Choice</div>
+      <div class="ws-qtext">Which of the following correctly describes XYLEM transport in plants?</div>
+      <div class="ws-opts2">
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc5',this,false)"><span class="wol">A</span>Transports dissolved sugars both up and down the plant</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc5',this,true)"><span class="wol">B</span>Transports water and minerals upward from roots to leaves</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc5',this,false)"><span class="wol">C</span>Transports oxygen downward to the roots</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-mc5',this,false)"><span class="wol">D</span>Transports water downward from leaves to roots</div>
+      </div>
+      <div class="ws-reveal" id="wq-mc5-r"><strong>✓ B.</strong> Xylem: dead cells, no end walls, transports water + minerals UPWARD only (transpiration stream). Phloem: living cells, transports dissolved sugars up AND down.</div>
+    </div>
+
+    <div class="ws-action-row">
+      <button class="btn btn-green" onclick="wsMarkAll(1)" style="flex:1">✓ Mark All</button>
+      <button class="btn btn-ghost" onclick="wsReset2(1)" style="flex:1">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- SHEET 2: Life on Earth -->
+  <div class="ws-sheet2" id="wss-2">
+    <div style="background:rgba(88,166,255,0.07);border:1px solid rgba(88,166,255,0.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:0.78rem;color:var(--accent4);line-height:1.5">
+      <strong>📋 SQA Key Areas:</strong> Ecosystems · Distribution of organisms · Photosynthesis · Energy in ecosystems · Food production · Evolution of species
+    </div>
+    <div class="ws-section-head">Section A — Ecosystems & Energy</div>
+
+    <div class="ws-q" id="wq-le1" data-done="0">
+      <div class="ws-qlabel">Q1 · Multiple Choice</div>
+      <div class="ws-qtext">Which is the correct word equation for PHOTOSYNTHESIS?</div>
+      <div class="ws-opts2">
+        <div class="ws-opt2" onclick="wsMCQ('wq-le1',this,false)"><span class="wol">A</span>Glucose + Oxygen → Carbon dioxide + Water + ATP</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-le1',this,true)"><span class="wol">B</span>Carbon dioxide + Water → Glucose + Oxygen (light energy)</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-le1',this,false)"><span class="wol">C</span>Glucose → Ethanol + Carbon dioxide</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-le1',this,false)"><span class="wol">D</span>Water + Oxygen → Carbon dioxide + Glucose</div>
+      </div>
+      <div class="ws-reveal" id="wq-le1-r"><strong>✓ B.</strong> Photosynthesis: CO₂ + H₂O → Glucose + O₂ (using light energy in chloroplasts). This is the reverse of aerobic respiration and is the foundation of almost all food chains.</div>
+    </div>
+
+    <div class="ws-q" id="wq-le2" data-done="0">
+      <div class="ws-qlabel">Q2 · Short Answer (2 marks)</div>
+      <div class="ws-qtext">Construct a food chain using: <strong>Oak tree / Caterpillar / Blue tit / Sparrowhawk</strong>. Label the producer and primary consumer.</div>
+      <textarea class="ws-ta" id="wq-le2-ta" placeholder="Food chain: … → … → … → …&#10;Producer = …&#10;Primary consumer = …"></textarea>
+      <button class="ws-check" onclick="wsReveal('wq-le2')">Show Model Answer</button>
+      <div class="ws-reveal" id="wq-le2-r"><strong>✓</strong> Oak tree → Caterpillar → Blue tit → Sparrowhawk<br>Producer = <strong>Oak tree</strong> | Primary consumer = <strong>Caterpillar</strong><br>(Arrows show direction of energy flow — from eaten to eater)</div>
+    </div>
+
+    <div class="ws-q" id="wq-le3" data-done="0">
+      <div class="ws-qlabel">Q3 · Fill in the Blanks — Nitrogen Cycle</div>
+      <div class="ws-eq">
+        <input class="eq-in" id="eqla" placeholder="???????????????" style="min-width:140px"> bacteria convert N₂ gas into nitrates that plants can absorb.<br><br>
+        <input class="eq-in" id="eqlb" placeholder="???????????"> (bacteria/fungi) break down dead matter, releasing ammonium ions.<br><br>
+        <input class="eq-in" id="eqlc" placeholder="?????????????"> bacteria convert nitrates back into N₂ gas, returning it to the atmosphere.
+      </div>
+      <button class="ws-check" onclick="wsEq('wq-le3',['eqla','eqlb','eqlc'],['nitrogen-fixing','decomposers','denitrifying'])">Check ✓</button>
+      <div class="ws-reveal" id="wq-le3-r"><strong>✓</strong> <strong>Nitrogen-fixing</strong> bacteria → fix N₂. <strong>Decomposers</strong> → break down dead matter. <strong>Denitrifying</strong> bacteria → return N₂ to atmosphere.</div>
+    </div>
+
+    <div class="ws-section-head">Section B — Evolution & Natural Selection</div>
+
+    <div class="ws-q" id="wq-le4" data-done="0">
+      <div class="ws-qlabel">Q4 · Multiple Choice</div>
+      <div class="ws-qtext">How does antibiotic resistance develop in bacteria? Which explanation is correct?</div>
+      <div class="ws-opts2">
+        <div class="ws-opt2" onclick="wsMCQ('wq-le4',this,false)"><span class="wol">A</span>Bacteria deliberately mutate when they sense antibiotics</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-le4',this,true)"><span class="wol">B</span>Random mutations create resistant bacteria; antibiotic use kills non-resistant ones — natural selection</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-le4',this,false)"><span class="wol">C</span>Antibiotics cause bacteria to produce resistance genes</div>
+        <div class="ws-opt2" onclick="wsMCQ('wq-le4',this,false)"><span class="wol">D</span>Bacteria learn to resist antibiotics over their lifetime</div>
+      </div>
+      <div class="ws-reveal" id="wq-le4-r"><strong>✓ B — Natural selection.</strong> Random mutations → some bacteria are resistant. Antibiotics kill non-resistant bacteria. Resistant bacteria survive and reproduce → resistance allele becomes more common. This is Darwin's natural selection in action.</div>
+    </div>
+
+    <div class="ws-q" id="wq-le5" data-done="0">
+      <div class="ws-qlabel">Q5 · Extended Answer (5 marks)</div>
+      <div class="ws-qtext">Explain the process of natural selection. Include: variation, selection pressure, survival, reproduction, change over generations.</div>
+      <textarea class="ws-ta" id="wq-le5-ta" placeholder="Write your extended answer here…" style="min-height:110px"></textarea>
+      <button class="ws-check" onclick="wsReveal('wq-le5')">Show Model Answer</button>
+      <div class="ws-reveal" id="wq-le5-r"><strong>✓ Model answer (1 mark each):</strong><br>1. <strong>Variation</strong> — individuals in a population show variation due to random mutations and sexual reproduction. (1)<br>2. <strong>Selection pressure</strong> — a challenge (predation, disease, climate) means not all individuals survive equally. (1)<br>3. <strong>Survival</strong> — individuals with advantageous traits are more likely to survive ('survival of the fittest'). (1)<br>4. <strong>Reproduction</strong> — survivors reproduce and pass on their beneficial alleles to offspring. (1)<br>5. <strong>Change over generations</strong> — the advantageous allele becomes more frequent in the population over many generations; over long timescales this can lead to new species (speciation). (1)</div>
+    </div>
+
+    <div class="ws-action-row">
+      <button class="btn btn-green" onclick="wsMarkAll(2)" style="flex:1">✓ Mark All</button>
+      <button class="btn btn-ghost" onclick="wsReset2(2)" style="flex:1">↺ Reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MOCK EXAM PAGE ═══════════════ -->
+<div class="page" id="page-mock">
+  <div id="mock-home">
+    <div class="exam-hero">
+      <h2>📋 Mock Exam — Nat 5 Biology</h2>
+      <p>Based on the SQA curriculum. Two sittings just like the real exam.<br><strong>Paper 1:</strong> Short answers · 25 marks · 30 min &nbsp;|&nbsp; <strong>Paper 2:</strong> Extended · 25 marks · 40 min</p>
+    </div>
+    <div class="exam-cards">
+      <div class="exam-card" onclick="startMock('paper1')">
+        <div class="ec-icon">📄</div>
+        <div><div class="ec-title">Paper 1 — Mixed Questions</div><div class="ec-desc">25 questions · 30 minutes · all units</div></div>
+      </div>
+      <div class="exam-card" onclick="startMock('paper2')">
+        <div class="ec-icon">📝</div>
+        <div><div class="ec-title">Paper 2 — Mixed Questions</div><div class="ec-desc">25 questions · 40 minutes · all units</div></div>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:8px">📋 Exam Tips</div>
+    <div class="tip-card"><div class="tip-icon">✏️</div><div class="tip-text"><strong>Use precise scientific vocabulary</strong> — the SQA mark scheme awards marks for specific terms (e.g. "plasmolysis", "complementary base pairing", "selectively permeable").</div></div>
+    <div class="tip-card"><div class="tip-icon">🔬</div><div class="tip-text"><strong>Learn the equations</strong> — aerobic respiration, photosynthesis, and both forms of anaerobic respiration are common exam questions.</div></div>
+    <div class="tip-card"><div class="tip-icon">📊</div><div class="tip-text"><strong>Show your reasoning</strong> — for 2-mark questions, give two separate points. Watch for command words: "describe", "explain", "state".</div></div>
+    <div class="tip-card"><div class="tip-icon">🧬</div><div class="tip-text"><strong>Genetics questions</strong> — always show your Punnett square working. State the genotype AND phenotype ratio in your answer.</div></div>
+    <div class="tip-card"><div class="tip-icon">⏱</div><div class="tip-text"><strong>Manage your time</strong> — if stuck, move on and come back. Never leave a blank — an attempt may get a mark.</div></div>
+  </div>
+  <div id="mock-exam" style="display:none">
+    <div class="exam-timer-bar">
+      <span style="font-size:1rem">⏱</span>
+      <span class="exam-timer-val" id="mock-timer">30:00</span>
+      <span style="font-size:0.78rem;color:var(--muted)" id="mock-paper-label">Paper 1</span>
+      <span class="exam-marks">Score: <span id="mock-score-live">0</span> / <span id="mock-total-live">25</span></span>
+    </div>
+    <div class="q-progress"><div class="q-progress-fill" id="mock-progress-fill" style="width:0%"></div></div>
+    <div id="mock-q-area"></div>
+    <div class="btn-row">
+      <button class="btn btn-green" id="mock-submit-btn" onclick="mockSubmit()">Submit Answer ✓</button>
+      <button class="btn btn-ghost" onclick="mockSkip()">Skip →</button>
+      <button class="btn btn-red" onclick="mockEnd()">End Exam</button>
+    </div>
+  </div>
+  <div id="mock-results" style="display:none">
+    <div class="results-hero">
+      <div class="score-ring">
+        <svg width="130" height="130" viewBox="0 0 130 130">
+          <circle cx="65" cy="65" r="54" fill="none" stroke="#30363d" stroke-width="10"/>
+          <circle id="mock-ring" cx="65" cy="65" r="54" fill="none" stroke="#3fb950" stroke-width="10" stroke-linecap="round" stroke-dasharray="339" stroke-dashoffset="339"/>
+        </svg>
+        <div class="score-ring-text">
+          <div class="score-big" id="mock-pct">0%</div>
+          <div class="score-lbl">SCORE</div>
+        </div>
+      </div>
+      <div class="grade-pill" id="mock-grade"></div>
+      <div style="font-size:1rem;font-weight:800" id="mock-msg"></div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:4px" id="mock-sub"></div>
+      <div class="res-grid">
+        <div class="res-item"><div class="res-val" id="mr-correct" style="color:var(--accent)">0</div><div class="res-key">CORRECT</div></div>
+        <div class="res-item"><div class="res-val" id="mr-wrong" style="color:var(--accent2)">0</div><div class="res-key">WRONG</div></div>
+        <div class="res-item"><div class="res-val" id="mr-time">—</div><div class="res-key">TIME</div></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-green" onclick="restartMock()">Try Again</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('mock-home').style.display='block';document.getElementById('mock-results').style.display='none'">← Exams</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ TOPICS PAGE ═══════════════ -->
+<div class="page" id="page-topics">
+  <div class="section-title">🗂 Topics</div>
+  <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px">Tap a topic to practise it directly</p>
+  <div class="topic-grid" id="topic-grid-page"></div>
+</div>
+
+<!-- ═══════════════ KEY FACTS PAGE ═══════════════ -->
+<div class="page" id="page-formulas">
+  <div class="section-title">🔬 Key Facts & Equations</div>
+  <p style="font-size:0.8rem;color:var(--muted);margin-bottom:16px">Essential knowledge for the SQA exam — learn these!</p>
+
+  <div class="formula-section">
+    <h3>🔬 Cell Biology</h3>
+    <div class="formula-cards">
+      <div class="formula-card"><div class="formula-name">Aerobic Respiration</div><div class="formula-val">Glucose + Oxygen → CO₂ + Water + ATP<br>Occurs in: cytoplasm (glycolysis) + mitochondria</div></div>
+      <div class="formula-card"><div class="formula-name">Anaerobic — Yeast</div><div class="formula-val">Glucose → Ethanol + CO₂ (+ 2 ATP)</div></div>
+      <div class="formula-card"><div class="formula-name">Anaerobic — Muscle</div><div class="formula-val">Glucose → Lactic acid (+ 2 ATP)</div></div>
+      <div class="formula-card"><div class="formula-name">DNA Base Pairing</div><div class="formula-val">A — T &nbsp;&nbsp;|&nbsp;&nbsp; G — C<br>Double helix held by complementary base pairs</div></div>
+      <div class="formula-card"><div class="formula-name">Osmosis</div><div class="formula-val">Water moves: HIGH water conc. → LOW water conc.<br>Through a selectively permeable membrane (passive)</div></div>
+      <div class="formula-card"><div class="formula-name">Protein Synthesis</div><div class="formula-val">DNA → mRNA (transcription, in nucleus)<br>mRNA → Protein (translation, at ribosome)</div></div>
+      <div class="formula-card"><div class="formula-name">Genetic Engineering (5 steps)</div><div class="formula-val">1. Identify gene → 2. Extract gene (restriction enzymes) → 3. Extract plasmid → 4. Insert gene into plasmid (ligase) → 5. Insert plasmid into host bacterium</div></div>
+    </div>
+  </div>
+
+  <div class="formula-section">
+    <h3>🦠 Multicellular Organisms</h3>
+    <div class="formula-cards">
+      <div class="formula-card"><div class="formula-name">Reflex Arc</div><div class="formula-val">Receptor → Sensory neuron → Relay neuron → Motor neuron → Effector</div></div>
+      <div class="formula-card"><div class="formula-name">Blood Glucose Regulation</div><div class="formula-val">High glucose → Pancreas releases Insulin → Liver converts glucose→glycogen<br>Low glucose → Pancreas releases Glucagon → Liver converts glycogen→glucose</div></div>
+      <div class="formula-card"><div class="formula-name">Brain Regions</div><div class="formula-val">Cerebrum: thought/memory &nbsp;|&nbsp; Cerebellum: balance/coordination<br>Medulla: heart rate/breathing (unconscious)</div></div>
+      <div class="formula-card"><div class="formula-name">Genetics Terms</div><div class="formula-val">Dominant (capital) = expressed with 1 copy<br>Recessive (lowercase) = needs 2 copies (homozygous)<br>Heterozygous = Aa &nbsp;|&nbsp; Homozygous = AA or aa</div></div>
+      <div class="formula-card"><div class="formula-name">Plant Transport</div><div class="formula-val">Xylem: water + minerals UPWARD (dead cells)<br>Phloem: sugars UP and DOWN (living cells)</div></div>
+      <div class="formula-card"><div class="formula-name">Transpiration Rate ↑ when…</div><div class="formula-val">↑ Wind speed &nbsp;|&nbsp; ↓ Humidity &nbsp;|&nbsp; ↑ Temperature &nbsp;|&nbsp; ↑ Light intensity</div></div>
+    </div>
+  </div>
+
+  <div class="formula-section">
+    <h3>🌍 Life on Earth</h3>
+    <div class="formula-cards">
+      <div class="formula-card"><div class="formula-name">Photosynthesis</div><div class="formula-val">CO₂ + H₂O → Glucose + O₂ (using light energy, in chloroplasts)<br>Limiting factors: light intensity, CO₂ concentration, temperature</div></div>
+      <div class="formula-card"><div class="formula-name">Energy Transfer in Food Chains</div><div class="formula-val">Only ~10% of energy transfers between trophic levels<br>~90% lost as heat (respiration, movement, waste)</div></div>
+      <div class="formula-card"><div class="formula-name">Nitrogen Cycle</div><div class="formula-val">Nitrogen-fixing bacteria: N₂ → nitrates (usable)<br>Decomposers: dead matter → ammonium<br>Denitrifying bacteria: nitrates → N₂ (back to atmosphere)</div></div>
+      <div class="formula-card"><div class="formula-name">Natural Selection</div><div class="formula-val">Variation → Selection pressure → Survival of fittest → Reproduction → Allele frequency changes over generations</div></div>
+      <div class="formula-card"><div class="formula-name">Ecological Relationships</div><div class="formula-val">Predation: predator benefits, prey harmed<br>Mutualism: both benefit (e.g. Rhizobium + legumes)<br>Parasitism: parasite benefits, host harmed<br>Competition: intraspecific (same sp.) / interspecific (diff. sp.)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PROGRESS PAGE ═══════════════ -->
+<div class="page" id="page-progress">
+  <div class="section-title">📊 Your Progress</div>
+  <div class="prog-stat-grid">
+    <div class="prog-stat"><div class="prog-stat-val" id="ps-total">0</div><div class="prog-stat-key">ANSWERED</div></div>
+    <div class="prog-stat"><div class="prog-stat-val" id="ps-correct">0</div><div class="prog-stat-key">CORRECT</div></div>
+    <div class="prog-stat"><div class="prog-stat-val" id="ps-streak">0</div><div class="prog-stat-key">BEST STREAK</div></div>
+    <div class="prog-stat"><div class="prog-stat-val" id="ps-xp">0</div><div class="prog-stat-key">TOTAL XP</div></div>
+  </div>
+  <div class="section-label" style="margin-bottom:10px">Topic Accuracy</div>
+  <div id="topic-prog-rows"></div>
+  <button class="btn btn-red" onclick="resetAllProgress()" style="margin-top:16px;width:100%">🔄 Reset All Progress</button>
+</div>
+
+<!-- ═══════════════ LINKS PAGE ═══════════════ -->
+<div class="page" id="page-links">
+  <div class="section-title">🔗 Helpful Links</div>
+  <div class="links-grid">
+    <a class="link-card" href="https://www.sqa.org.uk/sqa/47427.html" target="_blank" rel="noopener">
+      <div class="link-icon">🏛</div>
+      <div><div class="link-title">SQA — Nat 5 Biology</div><div class="link-desc">Official past papers, marking schemes & course spec</div></div>
+    </a>
+    <a class="link-card" href="https://www.bbc.co.uk/bitesize/subjects/z4882hv" target="_blank" rel="noopener">
+      <div class="link-icon">📺</div>
+      <div><div class="link-title">BBC Bitesize — Nat 5 Biology</div><div class="link-desc">Videos, notes and revision for every topic</div></div>
+    </a>
+    <a class="link-card" href="https://scholar.hw.ac.uk" target="_blank" rel="noopener">
+      <div class="link-icon">🎓</div>
+      <div><div class="link-title">SCHOLAR (Heriot-Watt)</div><div class="link-desc">Detailed online course for Scottish Nat 5 Biology</div></div>
+    </a>
+    <a class="link-card" href="https://www.understandingstandards.org.uk/Subjects/Biology" target="_blank" rel="noopener">
+      <div class="link-icon">📖</div>
+      <div><div class="link-title">Understanding Standards</div><div class="link-desc">SQA exemplar answers and marking guidance</div></div>
+    </a>
+    <a class="link-card" href="https://blogs.glowscotland.org.uk/gc/n5biology/" target="_blank" rel="noopener">
+      <div class="link-icon">🔬</div>
+      <div><div class="link-title">Glow — Nat 5 Biology Resources</div><div class="link-desc">Teacher-created notes and resources by key area</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ SETTINGS PAGE ═══════════════ -->
+<div class="page" id="page-settings">
+  <div class="section-title">⚙️ Settings</div>
+  <div class="settings-card">
+    <h3>Your Profile</h3>
+    <div class="setting-row">
+      <span class="setting-label">Your name</span>
+      <input class="setting-input" id="set-name" placeholder="e.g. Eilidh" style="flex:1">
+    </div>
+    <div class="setting-row">
+      <span class="setting-label">Daily question goal</span>
+      <select class="setting-input" id="set-goal">
+        <option value="5">5 questions</option>
+        <option value="10" selected>10 questions</option>
+        <option value="20">20 questions</option>
+        <option value="30">30 questions</option>
+      </select>
+    </div>
+    <button class="btn btn-green" onclick="saveSettings()" style="margin-top:10px;border:none">💾 Save</button>
+  </div>
+  <div class="settings-card">
+    <h3>ℹ️ About</h3>
+    <p style="font-size:0.82rem;line-height:1.6;color:var(--muted)">
+      Covers all three SQA Nat 5 Biology units: Cell Biology, Multicellular Organisms, and Life on Earth.<br><br>
+      ✅ Verified against SQA Course Spec <strong>C807 75</strong> (valid from 2022–23, confirmed current 2025).<br><br>
+      78 practice questions · Interactive worksheets · Mock exam · Key facts reference · XP levelling system.<br><br>
+      Progress saves automatically in your browser.
+    </p>
+  </div>
+</div>
+
+<script>
+// ✅ SQA Nat 5 Biology Course Spec C807 75 (valid 2022-23 onwards, confirmed current 2025)
+// Three official SQA units only. Genetics/DNA is a Cell Biology key area.
+// Variation & Inheritance is a Multicellular Organisms key area.
+const TOPICS = [
+  { id: 'cell_bio', name: 'Cell Biology', icon: '🔬', sub: 'Cell structure · Transport · DNA & proteins · Enzymes · Genetic engineering · Respiration' },
+  { id: 'multicell', name: 'Multicellular Organisms', icon: '🦠', sub: 'Mitosis · Nervous & hormonal · Reproduction · Variation & Inheritance · Transport systems · Absorption' },
+  { id: 'life_earth', name: 'Life on Earth', icon: '🌍', sub: 'Ecosystems · Distribution · Photosynthesis · Energy · Food production · Evolution' },
+];
+
+const QUESTIONS = [
+  // ══════════════════════════════════════
+  // CELL BIOLOGY — SQA Key Areas 1-6
+  // Cell structure | Transport | DNA & proteins | Proteins/Enzymes | Genetic engineering | Respiration
+  // ══════════════════════════════════════
+  {topic:'cell_bio', type:'mcq', q:'What is the function of the mitochondria?',
+    opts:['Protein synthesis','Energy production (ATP)','Cell division','Photosynthesis'],
+    ans:1, explain:'Mitochondria carry out aerobic respiration to produce ATP. Aerobic respiration is completed in the mitochondria (glycolysis begins in the cytoplasm).'},
+  {topic:'cell_bio', type:'mcq', q:'Which organelle is responsible for protein synthesis?',
+    opts:['Mitochondria','Nucleus','Ribosome','Vacuole'],
+    ans:2, explain:'Ribosomes are the sites of protein synthesis. They read mRNA and assemble amino acids into polypeptide chains. Found in cytoplasm and on rough ER.'},
+  {topic:'cell_bio', type:'mcq', q:'What is the role of the cell membrane?',
+    opts:['Provide rigid support','Control what enters and leaves the cell','Store genetic information','Produce energy'],
+    ans:1, explain:'The cell membrane consists of phospholipids and proteins and is selectively permeable — it controls what enters and leaves the cell.'},
+  {topic:'cell_bio', type:'mcq', q:'What is the cell membrane made of?',
+    opts:['Cellulose and starch','Phospholipids and proteins','DNA and glucose','Chitin and lipids'],
+    ans:1, explain:'The cell membrane is a phospholipid bilayer with embedded proteins. The phospholipid heads are hydrophilic (face outwards) and tails are hydrophobic (face inwards).'},
+  {topic:'cell_bio', type:'mcq', q:'Osmosis is the movement of water molecules from a region of…',
+    opts:['Low water concentration to high','High to low solute concentration','High water concentration to low through a selectively permeable membrane','Low solute to high solute'],
+    ans:2, explain:'Osmosis is the movement of water from HIGH water concentration to LOW water concentration through a selectively permeable membrane. No energy is required (passive).'},
+  {topic:'cell_bio', type:'mcq', q:'A plant cell placed in a very concentrated salt solution will become…',
+    opts:['Turgid — swells up','Plasmolysed — membrane pulls away from cell wall','It bursts (lysis)','Unchanged'],
+    ans:1, explain:'In a hypertonic (concentrated) solution, water leaves the plant cell by osmosis. The vacuole shrinks and the membrane pulls away from the cell wall — this is plasmolysis.'},
+  {topic:'cell_bio', type:'mcq', q:'An animal cell placed in pure water will…',
+    opts:['Become plasmolysed','Shrink','Burst (lyse) due to water entering by osmosis','Stay the same'],
+    ans:2, explain:'In a hypotonic solution, water enters the cell by osmosis. Animal cells have no cell wall to resist this, so they swell and burst (lysis). This is why human blood cells must be kept in isotonic saline.'},
+  {topic:'cell_bio', type:'mcq', q:'Active transport moves molecules…',
+    opts:['Down a concentration gradient, requiring no energy','Against a concentration gradient, requiring ATP','Only through protein channels, using no energy','By osmosis through the membrane'],
+    ans:1, explain:'Active transport moves molecules AGAINST the concentration gradient (from low to high concentration). This requires energy in the form of ATP and uses carrier proteins in the membrane.'},
+  {topic:'cell_bio', type:'mcq', q:'DNA is found in the _____ of a eukaryotic cell.',
+    opts:['Cytoplasm','Ribosome','Nucleus','Cell wall'],
+    ans:2, explain:'In eukaryotic cells, DNA is stored in the nucleus within chromosomes. Bacterial cells (prokaryotes) have no nucleus — DNA floats freely in the cytoplasm and also exists as small circular plasmids.'},
+  {topic:'cell_bio', type:'mcq', q:'In DNA, which bases pair with each other?',
+    opts:['Adenine with Guanine; Thymine with Cytosine','Adenine with Thymine; Guanine with Cytosine','Adenine with Cytosine; Guanine with Thymine','All four bases pair randomly'],
+    ans:1, explain:'Complementary base pairing in DNA: Adenine (A) always pairs with Thymine (T); Guanine (G) always pairs with Cytosine (C). This A-T, G-C rule holds the double helix together.'},
+  {topic:'cell_bio', type:'mcq', q:'A gene is best defined as…',
+    opts:['An entire chromosome','A section of DNA that codes for a specific protein','The complete set of all chromosomes in a cell','A type of RNA molecule'],
+    ans:1, explain:'A gene is a specific sequence of DNA bases on a chromosome that codes for one particular protein. The base sequence determines the amino acid sequence of the protein.'},
+  {topic:'cell_bio', type:'mcq', q:'What is the role of mRNA in protein synthesis?',
+    opts:['It replicates DNA in the nucleus','It carries a complementary copy of the genetic code from DNA to the ribosome','It directly builds the cell wall','It transports amino acids to the ribosome'],
+    ans:1, explain:'mRNA (messenger RNA) is made in the nucleus by transcription — it carries a complementary copy of the DNA code to the ribosome in the cytoplasm, where the protein is assembled (translation).'},
+  {topic:'cell_bio', type:'mcq', q:'Enzymes are biological catalysts. What does this mean?',
+    opts:['They provide the energy for reactions','They speed up chemical reactions without being used up in the process','They slow down reactions','They change the products of a reaction'],
+    ans:1, explain:'Enzymes speed up cellular reactions without being used up (unchanged in the process). They are made of protein. The active site has a complementary shape to a specific substrate (lock and key model).'},
+  {topic:'cell_bio', type:'mcq', q:'What happens to an enzyme when its temperature rises above the optimum?',
+    opts:['It works faster and faster','It is denatured — the active site changes shape permanently','It simply slows down but recovers when cooled','It becomes a better catalyst'],
+    ans:1, explain:'Above the optimum temperature, the enzyme denatures: the active site changes shape irreversibly so the substrate can no longer fit. The enzyme cannot catalyse the reaction.'},
+  {topic:'cell_bio', type:'mcq', q:'Which process uses light energy to produce glucose?',
+    opts:['Aerobic respiration','Photosynthesis','Osmosis','Fermentation'],
+    ans:1, explain:'Photosynthesis: CO₂ + H₂O → glucose + O₂ (using light energy, in chloroplasts containing chlorophyll). Photosynthesis is a key area in Life on Earth as well as related to chloroplasts in Cell Biology.'},
+  {topic:'cell_bio', type:'mcq', q:'The overall equation for AEROBIC respiration is:',
+    opts:['Glucose + Oxygen → Carbon dioxide + Water + ATP','Carbon dioxide + Water → Glucose + Oxygen','Glucose → Ethanol + Carbon dioxide','Glucose → Lactic acid'],
+    ans:0, explain:'Aerobic respiration: Glucose + Oxygen → Carbon dioxide + Water + ATP. It occurs in two stages: glycolysis in the cytoplasm (2 ATP), then aerobic stage in the mitochondria (many more ATP).'},
+  {topic:'cell_bio', type:'mcq', q:'In anaerobic respiration in YEAST, what are the products?',
+    opts:['Lactic acid and CO₂','Ethanol (alcohol) and CO₂','Only lactic acid','Only ATP'],
+    ans:1, explain:'Yeast fermentation (anaerobic): Glucose → Ethanol + Carbon dioxide + 2 ATP. This is the basis of brewing and bread-making. Only 2 ATP are produced (compared to many in aerobic respiration).'},
+  {topic:'cell_bio', type:'mcq', q:'In anaerobic respiration in ANIMAL MUSCLE CELLS, what is produced?',
+    opts:['Ethanol and CO₂','Only CO₂','Lactic acid','Glycogen'],
+    ans:2, explain:'Animal muscle cells anaerobically convert pyruvate to lactic acid when oxygen is scarce (e.g. during intense exercise). Lactic acid build-up causes fatigue. It must be broken down during recovery (the oxygen debt).'},
+  {topic:'cell_bio', type:'mcq', q:'Where in the cell does glycolysis (the first stage of respiration) take place?',
+    opts:['Mitochondria','Nucleus','Cytoplasm','Ribosome'],
+    ans:2, explain:'Glycolysis takes place in the cytoplasm. Glucose is broken down into two pyruvate molecules, releasing 2 ATP. If oxygen is present, pyruvate enters the mitochondria for aerobic respiration.'},
+  {topic:'cell_bio', type:'mcq', q:'What is the correct ORDER of stages in genetic engineering to produce insulin?',
+    opts:['Insert gene into plasmid → Extract gene → Identify gene → Insert plasmid into bacteria','Identify insulin gene → Extract gene using enzymes → Extract plasmid from bacteria → Insert gene into plasmid → Insert plasmid into host bacteria','Extract plasmid → Copy DNA → Identify gene → Insert into animal cell','Insert insulin gene into human chromosome only'],
+    ans:1, explain:'Genetic engineering stages (SQA): (1) Identify section of DNA containing the required gene. (2) Extract the gene (using restriction enzymes). (3) Extract plasmid from bacterial cell. (4) Insert gene into plasmid (using ligase enzymes). (5) Insert plasmid into host bacterial cell → GMO produces the protein.'},
+  {topic:'cell_bio', type:'mcq', q:'Which organelle is found in plant cells and carries out photosynthesis?',
+    opts:['Mitochondria','Ribosome','Chloroplast','Vacuole'],
+    ans:2, explain:'Chloroplasts contain the green pigment chlorophyll and are the sites of photosynthesis. They are found in plant cells (and some algae) but NOT in animal or fungal cells.'},
+  {topic:'cell_bio', type:'mcq', q:'The cell wall of a PLANT cell is made of:',
+    opts:['Chitin','Protein','Cellulose','Starch'],
+    ans:2, explain:'Plant cell walls are made of cellulose fibres. Fungal cell walls are made of chitin. Bacterial cell walls are made of peptidoglycan (murein). Animal cells have NO cell wall.'},
+  {topic:'cell_bio', type:'fillin', q:'The process by which cells become specialised for a specific function is called _____.', ans:'differentiation', explain:'Differentiation is when unspecialised cells develop into specific cell types during growth and development. Stem cells are undifferentiated and have the potential to become any cell type.'},
+  {topic:'cell_bio', type:'fillin', q:'The green pigment in plant chloroplasts that absorbs light for photosynthesis is called _____.', ans:'chlorophyll', explain:'Chlorophyll absorbs red and blue light (reflecting green — which is why plants appear green) and uses this energy to drive photosynthesis.'},
+  {topic:'cell_bio', type:'fillin', q:'The molecule that carries genetic instructions from the nucleus to the ribosome is called _____.', ans:'mRNA', explain:'Messenger RNA (mRNA) is transcribed from DNA in the nucleus. It carries the genetic code as a sequence of codons (triplets of bases) to the ribosome for translation into protein.'},
+  {topic:'cell_bio', type:'fillin', q:'Respiration begins in the cytoplasm with the breakdown of glucose to pyruvate. This process is called _____.', ans:'glycolysis', explain:'Glycolysis splits one glucose molecule into two pyruvate molecules, releasing 2 ATP. It occurs in the cytoplasm of ALL cells and does not require oxygen.'},
+  {topic:'cell_bio', type:'fillin', q:'The small circular DNA molecules found in bacterial cells used in genetic engineering are called _____.', ans:'plasmids', explain:'Plasmids are small circular DNA molecules found in bacteria (separate from the main chromosome). They are used as vectors in genetic engineering to carry foreign genes into host bacteria.'},
+
+  // ══════════════════════════════════════
+  // MULTICELLULAR ORGANISMS — SQA Key Areas 1-7
+  // Producing new cells | Control & communication | Reproduction | Variation & inheritance
+  // Transport (plants) | Transport (animals) | Absorption of materials
+  // ══════════════════════════════════════
+  {topic:'multicell', type:'mcq', q:'What is the role of the nervous system?',
+    opts:['Transport oxygen around the body','Coordinate rapid responses to stimuli using electrical impulses','Produce hormones for long-term regulation','Digest food in the gut'],
+    ans:1, explain:'The nervous system uses electrical impulses to rapidly detect stimuli and coordinate responses. It consists of the CNS (brain and spinal cord) and peripheral nerves.'},
+  {topic:'multicell', type:'mcq', q:'Which organ produces INSULIN?',
+    opts:['Liver','Kidney','Pancreas','Stomach'],
+    ans:2, explain:'The pancreas produces both insulin (lowers blood glucose) and glucagon (raises blood glucose). These hormones regulate blood glucose levels through a negative feedback mechanism.'},
+  {topic:'multicell', type:'mcq', q:'What is the function of red blood cells?',
+    opts:['Fight infection by producing antibodies','Transport oxygen using haemoglobin','Clot the blood at wounds','Produce hormones'],
+    ans:1, explain:'Red blood cells (erythrocytes) contain haemoglobin. Haemoglobin binds oxygen in the lungs (forming oxyhaemoglobin) and releases it at body tissues where oxygen concentration is lower.'},
+  {topic:'multicell', type:'mcq', q:'In humans, fertilisation (fusion of sperm and egg) occurs in the…',
+    opts:['Uterus','Ovary','Oviduct (fallopian tube)','Cervix'],
+    ans:2, explain:'Fertilisation occurs in the oviduct (fallopian tube). The fertilised egg (zygote) then travels to the uterus and implants in the uterine wall.'},
+  {topic:'multicell', type:'mcq', q:'What type of blood vessel carries blood AWAY from the heart?',
+    opts:['Vein','Capillary','Artery','Lymph vessel'],
+    ans:2, explain:'Arteries carry blood AWAY from the heart under high pressure. They have thick muscular walls. Veins carry blood BACK to the heart under low pressure, with valves. Capillaries are the site of gas/nutrient exchange.'},
+  {topic:'multicell', type:'mcq', q:'Which part of the brain controls balance and coordination?',
+    opts:['Cerebrum','Medulla','Cerebellum','Hypothalamus'],
+    ans:2, explain:'The cerebellum coordinates movement, balance, posture, and fine motor skills. The cerebrum is responsible for conscious thought. The medulla controls vital unconscious functions like heart rate and breathing.'},
+  {topic:'multicell', type:'mcq', q:'What is the correct sequence of a reflex arc?',
+    opts:['Receptor → Motor neuron → Relay neuron → Sensory neuron → Effector','Receptor → Sensory neuron → Relay neuron → Motor neuron → Effector','Brain → Sensory neuron → Effector','Effector → Motor neuron → Brain → Sensory neuron → Receptor'],
+    ans:1, explain:'Reflex arc (SQA): Receptor (detects stimulus) → Sensory neuron → Relay (inter) neuron (in spinal cord) → Motor neuron → Effector (muscle or gland). The response bypasses the brain for speed.'},
+  {topic:'multicell', type:'mcq', q:'Meiosis produces cells with…',
+    opts:['The same (diploid) number of chromosomes as the parent cell','Half (haploid) the number of chromosomes','Double the number of chromosomes','No chromosomes'],
+    ans:1, explain:'Meiosis halves the chromosome number to produce haploid gametes (sperm and eggs with 23 chromosomes in humans). When two gametes fuse at fertilisation, the diploid number (46) is restored.'},
+  {topic:'multicell', type:'mcq', q:'What does the hormone ADRENALINE do?',
+    opts:['Lowers blood glucose after a meal','Prepares the body for fight or flight — increases heart rate and diverts blood to muscles','Promotes growth during childhood','Regulates water balance in the kidney'],
+    ans:1, explain:'Adrenaline is released by the adrenal glands when stressed or in danger. It increases heart rate, dilates airways, raises blood glucose, and redirects blood to muscles — the fight or flight response.'},
+  {topic:'multicell', type:'mcq', q:'Which type of neuron carries impulses from the CNS to muscles?',
+    opts:['Sensory neuron','Relay (inter) neuron','Motor neuron','Receptor cell'],
+    ans:2, explain:'Motor neurons carry impulses FROM the CNS (brain/spinal cord) TO effectors (muscles and glands). Sensory neurons carry impulses FROM receptors TO the CNS.'},
+  {topic:'multicell', type:'mcq', q:'Where does gas exchange (O₂ in, CO₂ out) occur in the lungs?',
+    opts:['Trachea','Bronchi','Alveoli','Diaphragm'],
+    ans:2, explain:'Alveoli are tiny air sacs. O₂ diffuses from alveolar air into blood; CO₂ diffuses from blood into alveolar air. Adaptations: enormous total surface area (~70m²); walls one cell thick; rich blood supply.'},
+  {topic:'multicell', type:'mcq', q:'What is TRANSPIRATION in plants?',
+    opts:['The transport of sugars from leaves to roots','The loss of water vapour from leaves, mainly through stomata','The absorption of water by root hairs','The production of glucose by photosynthesis'],
+    ans:1, explain:'Transpiration is the evaporation and diffusion of water vapour from plant leaves, mainly through stomata. It drives water movement up the xylem from roots to leaves (the transpiration stream).'},
+  {topic:'multicell', type:'mcq', q:'Which factor would INCREASE the rate of transpiration?',
+    opts:['High humidity','Still/no wind','Low temperature','High wind speed'],
+    ans:3, explain:'High wind speed removes water vapour from around stomata, maintaining the concentration gradient and increasing transpiration. Low humidity, high temperature, and increased light also increase transpiration.'},
+  {topic:'multicell', type:'mcq', q:'What does XYLEM transport in plants and in which direction?',
+    opts:['Sugar — upwards and downwards','Water and minerals — upwards from roots to leaves','Oxygen — downwards from leaves','Glucose — upwards from roots'],
+    ans:1, explain:'Xylem vessels transport water and dissolved minerals upwards from roots to leaves. Xylem is made of dead cells with no end walls, forming hollow tubes. Xylem also provides structural support.'},
+  {topic:'multicell', type:'mcq', q:'What does PHLOEM transport in plants?',
+    opts:['Water only — upwards','Dissolved sugars (sucrose) — up and down the plant','Minerals — downwards only','Carbon dioxide — outwards'],
+    ans:1, explain:'Phloem transports dissolved sugars (mainly sucrose) produced by photosynthesis from leaves to all other parts of the plant (both up and down). Phloem cells are alive (unlike xylem).'},
+  {topic:'multicell', type:'mcq', q:'In a monohybrid cross between two heterozygous tall plants (Tt × Tt), what is the expected phenotype ratio?',
+    opts:['All tall','1 tall : 1 dwarf','3 tall : 1 dwarf','1 tall : 2 medium : 1 dwarf'],
+    ans:2, explain:'Tt × Tt gives genotypes: TT (tall), Tt (tall), Tt (tall), tt (dwarf) — in a 1:2:1 ratio. Phenotype ratio = 3 tall : 1 dwarf. T is dominant so TT and Tt both appear tall.'},
+  {topic:'multicell', type:'mcq', q:'Which of the following is an example of CONTINUOUS variation?',
+    opts:['Blood group (A, B, AB, O)','Tongue rolling ability (can/cannot)','Height in humans','Attached or free earlobes'],
+    ans:2, explain:'Continuous variation shows a range of values with no distinct categories (e.g. height, weight, shoe size). It is polygenic (controlled by many genes) and influenced by the environment. Blood groups and tongue rolling are discrete (discontinuous) variation.'},
+  {topic:'multicell', type:'mcq', q:'The role of GLUCAGON is to…',
+    opts:['Lower blood glucose by promoting glycogen synthesis','Raise blood glucose by stimulating the liver to convert glycogen to glucose','Stimulate insulin production','Control water balance in the kidney'],
+    ans:1, explain:'Glucagon is released by the pancreas when blood glucose falls too low. It stimulates the liver to break down glycogen into glucose (glycogenolysis), raising blood glucose back to normal.'},
+  {topic:'multicell', type:'mcq', q:'Where does water enter a plant?',
+    opts:['Through stomata in leaves','Through root hair cells by osmosis','Through the phloem','Through the xylem directly'],
+    ans:1, explain:'Root hair cells have a large surface area and absorb water by osmosis (water potential of soil water > water potential inside root hair). Water then moves up through the xylem.'},
+  {topic:'multicell', type:'mcq', q:'What is the purpose of valves in VEINS?',
+    opts:['To speed up blood flow','To prevent backflow of blood, ensuring it flows towards the heart','To absorb nutrients','To regulate blood pressure'],
+    ans:1, explain:'Veins carry blood back to the heart under low pressure. Valves prevent blood flowing backwards (away from the heart). Arteries do not need valves as blood flows under high pressure from the heart.'},
+  {topic:'multicell', type:'fillin', q:'The liquid part of blood that carries dissolved substances is called _____.', ans:'plasma', explain:'Plasma is the straw-coloured liquid component of blood (~55% of blood volume). It transports dissolved nutrients, hormones, CO₂, urea, antibodies, and heat around the body.'},
+  {topic:'multicell', type:'fillin', q:'The type of reproduction that involves two parents and produces genetic variation is called _____ reproduction.', ans:'sexual', explain:'Sexual reproduction involves meiosis to produce haploid gametes and fertilisation (fusion of gametes). The combination of genetic material from two parents produces offspring with variation.'},
+  {topic:'multicell', type:'fillin', q:'The gap between two neurons where a chemical signal is passed is called a _____.', ans:'synapse', explain:'At a synapse, neurotransmitters are released from vesicles in the presynaptic neuron, diffuse across the synaptic cleft, and bind to receptors on the postsynaptic neuron, triggering a new electrical impulse.'},
+  {topic:'multicell', type:'fillin', q:'The protein in red blood cells that carries oxygen is called _____.', ans:'haemoglobin', explain:'Haemoglobin binds to oxygen in the lungs (forming oxyhaemoglobin) and releases it in body tissues. Each haemoglobin molecule can carry 4 oxygen molecules.'},
+  {topic:'multicell', type:'fillin', q:'An organism with two identical alleles for a gene (e.g. TT or tt) is described as _____.', ans:'homozygous', explain:'Homozygous = two identical alleles (TT = homozygous dominant; tt = homozygous recessive). Heterozygous = two different alleles (Tt). A heterozygous individual is called a carrier for recessive conditions.'},
+  {topic:'multicell', type:'fillin', q:'The type of variation controlled by a single gene with distinct categories (e.g. blood groups) is called _____ variation.', ans:'discrete', explain:'Discrete (discontinuous) variation has distinct categories with no intermediates — e.g. blood type, tongue rolling, earlobe type. It is controlled by one or a small number of genes with no environmental influence.'},
+
+  // ══════════════════════════════════════
+  // LIFE ON EARTH — SQA Key Areas 1-6
+  // Ecosystems | Distribution of organisms | Photosynthesis | Energy in ecosystems | Food production | Evolution
+  // ══════════════════════════════════════
+  {topic:'life_earth', type:'mcq', q:'What is a food chain?',
+    opts:['A diagram showing all feeding relationships in an ecosystem','A sequence showing the transfer of energy from producers to consumers','A list of all decomposers in a habitat','A cycle of nutrients through an ecosystem'],
+    ans:1, explain:'A food chain shows the transfer of energy from one organism to the next, starting with a producer (green plant). Arrows show the direction of energy flow (→ means "is eaten by").'},
+  {topic:'life_earth', type:'mcq', q:'What is the role of DECOMPOSERS in an ecosystem?',
+    opts:['Produce energy from sunlight','Break down dead organic matter and recycle nutrients back into the soil','Eat primary consumers','Fix nitrogen from the atmosphere'],
+    ans:1, explain:'Decomposers (mainly bacteria and fungi) break down dead organisms and waste, releasing inorganic minerals (e.g. nitrates, phosphates) back into the soil for plants to absorb. They are essential nutrient recyclers.'},
+  {topic:'life_earth', type:'mcq', q:'Which level of a food chain contains the MOST energy?',
+    opts:['Top predator','Secondary consumer','Primary consumer','Producer (green plants)'],
+    ans:3, explain:'Producers contain the most energy. Only about 10% of energy is transferred to the next trophic level — approximately 90% is lost as heat through respiration, movement, and waste at each level.'},
+  {topic:'life_earth', type:'mcq', q:'Natural selection is BEST described as:',
+    opts:['All organisms in a population survive equally','Individuals with favourable variations survive and reproduce more, passing on their traits','Organisms deliberately change their features to suit the environment','Random mutations always improve survival chances'],
+    ans:1, explain:'Natural selection (Darwin): individuals with advantageous variations are more likely to survive and reproduce → pass on beneficial alleles to offspring → allele becomes more common in population over generations.'},
+  {topic:'life_earth', type:'mcq', q:'Which gas is fixed (converted to usable form) by nitrogen-fixing bacteria?',
+    opts:['Oxygen','Carbon dioxide','Nitrogen (N₂)','Methane'],
+    ans:2, explain:'Nitrogen-fixing bacteria (e.g. Rhizobium in root nodules) convert atmospheric N₂ into ammonia/ammonium ions that plants can absorb and use to make proteins and DNA.'},
+  {topic:'life_earth', type:'mcq', q:'What is BIODIVERSITY?',
+    opts:['The number of individuals in a population','The variety of different species in an ecosystem','The rate at which species evolve','The total biomass in an area'],
+    ans:1, explain:'Biodiversity is the variety of species in an ecosystem (species richness). High biodiversity makes ecosystems more stable and resilient. Human activities such as deforestation, pollution, and intensive farming reduce biodiversity.'},
+  {topic:'life_earth', type:'mcq', q:'Competition between individuals of the SAME species is called…',
+    opts:['Interspecific competition','Predation','Intraspecific competition','Mutualism'],
+    ans:2, explain:'Intraspecific = same species (compete for identical resources — most intense). Interspecific = different species (compete for some shared resources — less intense as niches differ slightly).'},
+  {topic:'life_earth', type:'mcq', q:'Which of the following is an example of a MUTUALISTIC relationship?',
+    opts:['A lion eating a zebra (predation)','Fleas on a dog (parasitism)','Nitrogen-fixing bacteria in plant root nodules','A tapeworm in a human gut (parasitism)'],
+    ans:2, explain:'Mutualism: both species benefit. Rhizobium bacteria in legume root nodules fix nitrogen for the plant; the plant provides the bacteria with sugars. Bees and flowers is another mutualistic example.'},
+  {topic:'life_earth', type:'mcq', q:'The word equation for PHOTOSYNTHESIS is:',
+    opts:['Glucose + Oxygen → Carbon dioxide + Water + energy','Carbon dioxide + Water → Glucose + Oxygen (using light energy)','Glucose → Lactic acid + CO₂','Glucose + CO₂ → Starch + O₂'],
+    ans:1, explain:'Photosynthesis: Carbon dioxide + Water → Glucose + Oxygen (using light energy and chlorophyll). It occurs in chloroplasts. This is the foundation of almost all food chains on Earth.'},
+  {topic:'life_earth', type:'mcq', q:'Which factor would LIMIT the rate of photosynthesis on a dull (cloudy) day?',
+    opts:['Too much CO₂','Excess water','Low light intensity','High temperature'],
+    ans:2, explain:'On a dull day, low light intensity is the limiting factor — there is not enough light energy to drive the light-dependent reactions. Limiting factors: light intensity, CO₂ concentration, temperature.'},
+  {topic:'life_earth', type:'mcq', q:'An indicator species is…',
+    opts:['The top predator in an ecosystem','A species whose presence or absence indicates the environmental quality or level of pollution','The most numerous species in a habitat','A species introduced from another country'],
+    ans:1, explain:'Indicator species signal ecosystem health. Examples: freshwater shrimps (Gammarus) = clean unpolluted water; rat-tailed maggots = heavily polluted water; lichens = clean air (absent in polluted areas).'},
+  {topic:'life_earth', type:'mcq', q:'What is the CARBON CYCLE?',
+    opts:['The flow of energy through a food chain','The movement of carbon through living organisms and the environment via photosynthesis, respiration, combustion, and decomposition','The rate at which plants photosynthesise carbon dioxide','A type of ecological succession'],
+    ans:1, explain:'The carbon cycle: Plants remove CO₂ from the atmosphere by photosynthesis. CO₂ is returned by respiration (all organisms), combustion of fossil fuels, decomposition, and volcanic activity.'},
+  {topic:'life_earth', type:'mcq', q:'Which of the following is an example of a PARASITIC relationship?',
+    opts:['Bees and flowers','Clownfish and sea anemone','Tapeworm in a human intestine','Lichen (algae and fungi living together)'],
+    ans:2, explain:'Parasitism: parasite benefits at the host\'s expense. A tapeworm lives in the human gut, absorbing digested nutrients while the host loses nutrition and may become ill. Fleas, ticks, and mistletoe are other parasites.'},
+  {topic:'life_earth', type:'mcq', q:'Which process returns nitrogen gas (N₂) back to the atmosphere from the soil?',
+    opts:['Nitrification','Nitrogen fixation','Denitrification','Decomposition'],
+    ans:2, explain:'Denitrifying bacteria convert nitrates in the soil back into nitrogen gas (N₂) which returns to the atmosphere, completing the nitrogen cycle. This reduces soil fertility.'},
+  {topic:'life_earth', type:'mcq', q:'Why is eating food lower in the food chain (e.g. eating wheat rather than beef) more energy-efficient?',
+    opts:['Plants contain more protein than animals','Less energy is lost because fewer trophic level transfers occur','Animals taste better','Plants reproduce faster'],
+    ans:1, explain:'Only ~10% of energy transfers between trophic levels. Eating animals means you receive only ~10% of the energy the animal got from plants. Eating plants directly gives ~10× more energy per unit of land.'},
+  {topic:'life_earth', type:'mcq', q:'What is BIOLOGICAL CONTROL?',
+    opts:['Using chemical pesticides to kill pests','Using a natural predator or parasite to reduce pest numbers','Genetically modifying crops to resist pests','Using antibiotics to control bacterial infection in crops'],
+    ans:1, explain:'Biological control uses a natural enemy of the pest (predator, parasite, or pathogen) to reduce pest populations. Example: releasing ladybirds to control aphids. No chemical residues; pest cannot evolve resistance to another organism.'},
+  {topic:'life_earth', type:'mcq', q:'In a pyramid of biomass, what does the BASE represent?',
+    opts:['Top predators','Decomposers','Producers (plants)','Secondary consumers'],
+    ans:2, explain:'The base of a pyramid of biomass represents producers — they have the most biomass (total mass of living material). Each level above has less biomass because energy is lost at each trophic level.'},
+  {topic:'life_earth', type:'mcq', q:'What is ECOLOGICAL SUCCESSION?',
+    opts:['The extinction of species over time','The gradual change from one community of organisms to another, ending in a stable climax community','A type of predator-prey relationship','The colonisation of new habitats only by animals'],
+    ans:1, explain:'Ecological succession: bare rock/ground is colonised by pioneer species (e.g. mosses/lichens) → soil forms → more complex plants establish → eventually a stable climax community (e.g. oak woodland in Scotland).'},
+  {topic:'life_earth', type:'mcq', q:'A mutation is…',
+    opts:['A normal change that all cells undergo at puberty','A change in the sequence of bases in DNA','The process of meiosis','The fusion of two gametes'],
+    ans:1, explain:'A mutation is a change in the DNA base sequence. Mutations can be neutral, harmful, or (rarely) beneficial. They are the source of new alleles and therefore the raw material for natural selection and evolution.'},
+  {topic:'life_earth', type:'mcq', q:'Which of the following would DECREASE biodiversity in an ecosystem?',
+    opts:['Creating wildlife corridors between habitats','Reducing the use of pesticides','Intensive monoculture farming (growing a single crop over large areas)','Establishing nature reserves and protected areas'],
+    ans:2, explain:'Intensive monoculture reduces habitat complexity and food sources for wildlife, leading to fewer species. Pesticides kill non-target organisms. Both significantly reduce biodiversity compared to mixed farming or natural habitats.'},
+  {topic:'life_earth', type:'fillin', q:'The process by which new species arise over time through natural selection is called _____.', ans:'evolution', explain:'Evolution is the gradual change in the heritable characteristics of populations over many generations, driven primarily by natural selection acting on random mutations. It leads to adaptation and eventually new species (speciation).'},
+  {topic:'life_earth', type:'fillin', q:'A _____ is a group of organisms of the same species living in the same area at the same time.', ans:'population', explain:'A population is a group of individuals of the same species in a defined area. Population size is affected by birth rate, death rate, immigration, and emigration. It fluctuates around the carrying capacity.'},
+  {topic:'life_earth', type:'fillin', q:'Organisms that make their own food using light energy are called _____.', ans:'producers', explain:'Producers (autotrophs) — mainly green plants and algae — use photosynthesis to convert light energy, CO₂, and water into glucose. They form the base of every food chain and food web.'},
+  {topic:'life_earth', type:'fillin', q:'The role an organism plays in its ecosystem, including what it eats and where it lives, is called its _____.', ans:'niche', explain:'A niche describes everything about how a species lives in its ecosystem. No two species can occupy exactly the same niche indefinitely — one will outcompete the other (competitive exclusion principle).'},
+  {topic:'life_earth', type:'fillin', q:'The maximum population size that an environment can sustainably support is called the _____.', ans:'carrying capacity', explain:'Carrying capacity is determined by available resources (food, water, space, light). When a population exceeds its carrying capacity, resources become limiting, increasing competition, predation, and disease — reducing the population.'},
+];
+
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let xp = 0, level = 1, streak = 0, bestStreak = 0;
+let totalAnswered = 0, totalCorrect = 0;
+let topicStats = { cell_bio:{a:0,c:0}, multicell:{a:0,c:0}, life_earth:{a:0,c:0} };
+let dailyGoal = 10, dailyDone = 0;
+let quizPool = [], quizIdx = 0;
+let currentQ = null;
+let fcCards = [], fcIdx = 0, fcKnew = 0;
+let mockQuestions = [], mockIdx = 0, mockScore = 0;
+let mockTimer = null, mockTimeLeft = 0, mockStartTime = null;
+let wsScores = [{c:0,t:0},{c:0,t:0},{c:0,t:0}], wsSheet = 0;
+const WS_IDS = [
+  ['wq-cb1','wq-cb2','wq-cb3','wq-cb4','wq-cb5','wq-cb6','wq-cb7','wq-cb8'],
+  ['wq-mc1','wq-mc2','wq-mc3','wq-mc4','wq-mc5'],
+  ['wq-le1','wq-le2','wq-le3','wq-le4','wq-le5']
+];
+
+// ── PERSIST ──
+function saveState() {
+  try {
+    localStorage.setItem('nat5bio_v2', JSON.stringify({
+      xp, level, streak, bestStreak, totalAnswered, totalCorrect,
+      topicStats, dailyGoal, dailyDone: getDailyDone()
+    }));
+  } catch(e){}
+}
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem('nat5bio_v2')||'{}');
+    xp = s.xp||0; level = s.level||1; streak = s.streak||0;
+    bestStreak = s.bestStreak||0; totalAnswered = s.totalAnswered||0;
+    totalCorrect = s.totalCorrect||0; topicStats = s.topicStats||topicStats;
+    dailyGoal = s.dailyGoal||10;
+    const today = new Date().toDateString();
+    const savedDay = s.dailyDay||'';
+    dailyDone = savedDay === today ? (s.dailyDone||0) : 0;
+  } catch(e){}
+}
+function getDailyDone(){ return dailyDone; }
+loadState();
+
+// ── NAV ──
+function nav(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelector(`[data-page="${page}"]`)?.classList.add('active');
+  if (page==='progress') renderProgress();
+  if (page==='topics') renderTopicPage();
+}
+
+// ── TOPBAR ──
+function updateTopbar() {
+  document.getElementById('xp-val').textContent = xp;
+  document.getElementById('streak-val').textContent = streak;
+  document.getElementById('lv-badge').textContent = 'Lv '+level;
+}
+function showXPToast(pts) {
+  const t = document.getElementById('xp-toast');
+  t.textContent = '+'+pts+' XP ⭐';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 1800);
+}
+function addXP(pts) {
+  xp += pts;
+  const needed = level * 100;
+  if (xp >= needed) { level++; xp -= needed; showXPToast(pts); }
+  else showXPToast(pts);
+  updateTopbar();
+}
+
+// ── DAILY GOAL ──
+function updateGoal(inc=1) {
+  dailyDone += inc;
+  const pct = Math.min(100, (dailyDone/dailyGoal)*100);
+  document.getElementById('goal-fill').style.width = pct+'%';
+  document.getElementById('goal-txt').textContent = dailyDone+'/'+dailyGoal;
+  if (dailyDone >= dailyGoal) {
+    document.getElementById('goal-txt').textContent = '✅ Done!';
+  }
+}
+
+// ── PRACTICE ──
+function getPool() {
+  const t = document.getElementById('topic-sel').value;
+  const ty = document.getElementById('type-sel').value;
+  let pool = QUESTIONS.filter(q =>
+    (t==='all' || q.topic===t) &&
+    (ty==='all' || q.type===ty)
+  );
+  return shuffle(pool);
+}
+
+function newQuestion() {
+  if (!quizPool.length || quizIdx >= quizPool.length) {
+    quizPool = getPool();
+    quizIdx = 0;
+  }
+  currentQ = quizPool[quizIdx++];
+  renderQ(currentQ);
+  const pct = Math.min(100,(quizIdx/Math.max(quizPool.length,1))*100);
+  document.getElementById('q-progress-fill').style.width = pct+'%';
+}
+
+function renderQ(q) {
+  const topicName = TOPICS.find(t=>t.id===q.topic)?.name||'';
+  const diffTag = quizIdx <= 3 ? 'easy' : quizIdx <= 7 ? '' : 'hard';
+  const diffLabel = diffTag==='easy'?'Easy':diffTag==='hard'?'Hard':'Medium';
+  const letters = ['A','B','C','D'];
+  let inner = '';
+  if (q.type==='mcq') {
+    const shuffledOpts = q.opts.map((o,i)=>({o,correct:i===q.ans}));
+    inner = `<div class="opts">${shuffledOpts.map((op,i)=>`
+      <button class="opt-btn" onclick="checkMCQ(this,${op.correct})">
+        <span class="opt-letter">${letters[i]}</span>${op.o}
+      </button>`).join('')}</div>`;
+  } else {
+    inner = `<input class="fill-input" id="fill-ans" placeholder="Type your answer…" onkeydown="if(event.key==='Enter')checkFill()">
+      <div class="btn-row"><button class="btn btn-green" onclick="checkFill()">Check ✓</button><button class="btn btn-ghost" onclick="newQuestion()">Skip →</button></div>`;
+  }
+  document.getElementById('question-area').innerHTML = `
+    <div class="q-card">
+      <div class="q-card-header">
+        <span class="q-tag">${topicName.toUpperCase()}</span>
+        ${diffTag?`<span class="q-tag ${diffTag}">${diffLabel}</span>`:''}
+        <span class="q-num">Q${quizIdx} / ${quizPool.length}</span>
+      </div>
+      <div class="q-text">${q.q}</div>
+      ${inner}
+      <div class="explanation" id="expl">
+        <div class="expl-label">📚 Explanation</div>
+        ${q.explain||''}
+      </div>
+    </div>
+    <div class="btn-row" id="next-row" style="display:none">
+      <button class="btn btn-green" onclick="newQuestion()">Next Question →</button>
+    </div>`;
+}
+
+function checkMCQ(el, correct) {
+  document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+  el.classList.add(correct?'correct':'wrong');
+  if (!correct) {
+    document.querySelectorAll('.opt-btn').forEach(b=>{
+      if(!b.classList.contains('wrong')) b.classList.add('correct');
+    });
+  }
+  recordAnswer(correct, currentQ?.topic);
+  document.getElementById('expl')?.classList.add('show');
+  const nr = document.getElementById('next-row');
+  if(nr) nr.style.display='flex';
+}
+
+function checkFill() {
+  const inp = document.getElementById('fill-ans');
+  if (!inp||!currentQ) return;
+  const val = inp.value.trim().toLowerCase();
+  const ans = currentQ.ans.toLowerCase();
+  const correct = val===ans || ans.includes(val) || val.includes(ans);
+  inp.classList.add(correct?'correct':'wrong');
+  inp.disabled = true;
+  document.querySelector('.btn-green')?.setAttribute('disabled','true');
+  if (!correct) {
+    const note = document.createElement('div');
+    note.style.cssText='color:var(--accent2);font-size:0.8rem;margin:6px 0';
+    note.textContent='✓ Correct answer: '+currentQ.ans;
+    inp.after(note);
+  }
+  recordAnswer(correct, currentQ?.topic);
+  document.getElementById('expl')?.classList.add('show');
+  const nr = document.getElementById('next-row');
+  if(nr) nr.style.display='flex';
+}
+
+function recordAnswer(correct, topic) {
+  totalAnswered++;
+  if(correct){ totalCorrect++; streak++; if(streak>bestStreak)bestStreak=streak; addXP(correct?10:2); }
+  else { streak=0; addXP(2); }
+  if(topic && topicStats[topic]){ topicStats[topic].a++; if(correct)topicStats[topic].c++; }
+  updateGoal();
+  updateTopbar();
+  saveState();
+}
+
+// ── FLASHCARDS ──
+function startFlashcards() {
+  const t = document.getElementById('fc-topic-sel').value;
+  fcCards = shuffle(QUESTIONS.filter(q=>t==='all'||q.topic===t));
+  fcIdx = 0; fcKnew = 0;
+  renderFC();
+}
+function renderFC() {
+  if (!fcCards.length) return;
+  const q = fcCards[fcIdx % fcCards.length];
+  const topicName = TOPICS.find(t=>t.id===q.topic)?.name||'';
+  const ans = q.type==='mcq' ? q.opts[q.ans] : q.ans;
+  document.getElementById('fc-front-text').textContent = q.q;
+  document.getElementById('fc-back-text').innerHTML = `<strong style="color:var(--accent4)">${ans}</strong>${q.explain?`<br><br><span style="font-size:0.8rem;color:var(--muted)">${q.explain}</span>`:''}`;
+  document.getElementById('fc-inner').classList.remove('flipped');
+  const total = fcCards.length;
+  const pct = Math.round((fcIdx/total)*100);
+  document.getElementById('fc-prog-txt').textContent = (fcIdx+1)+' / '+total;
+  document.getElementById('fc-prog-fill').style.width = pct+'%';
+  document.getElementById('fc-knew-txt').textContent = fcKnew;
+}
+function flipCard(){ document.getElementById('fc-inner').classList.toggle('flipped'); }
+function fcNext(knew) {
+  if(!fcCards.length) return;
+  if(knew){ fcKnew++; recordAnswer(true, fcCards[fcIdx%fcCards.length].topic); }
+  fcIdx++;
+  if(fcIdx >= fcCards.length){ fcIdx=0; fcCards=shuffle(fcCards); }
+  renderFC();
+}
+
+// ── MOCK EXAM ──
+let mockPaperType = 'paper1';
+function startMock(paper) {
+  mockPaperType = paper;
+  mockQuestions = shuffle(QUESTIONS).slice(0,25);
+  mockIdx = 0; mockScore = 0;
+  const mins = paper==='paper1'?30:40;
+  mockTimeLeft = mins*60;
+  mockStartTime = Date.now();
+  document.getElementById('mock-home').style.display='none';
+  document.getElementById('mock-exam').style.display='block';
+  document.getElementById('mock-results').style.display='none';
+  document.getElementById('mock-paper-label').textContent = paper==='paper1'?'Paper 1':'Paper 2';
+  document.getElementById('mock-total-live').textContent = 25;
+  mockTimer = setInterval(()=>{
+    mockTimeLeft--;
+    const m=Math.floor(mockTimeLeft/60), s=mockTimeLeft%60;
+    document.getElementById('mock-timer').textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(mockTimeLeft<=0){ clearInterval(mockTimer); mockShowResults(); }
+  },1000);
+  renderMockQ();
+}
+function renderMockQ() {
+  if(mockIdx>=mockQuestions.length){ mockEnd(); return; }
+  const q = mockQuestions[mockIdx];
+  const topicName = TOPICS.find(t=>t.id===q.topic)?.name||'';
+  const letters=['A','B','C','D'];
+  document.getElementById('mock-progress-fill').style.width=((mockIdx/25)*100)+'%';
+  document.getElementById('mock-score-live').textContent = mockScore;
+  let inner='';
+  if(q.type==='mcq'){
+    inner=`<div class="opts">${q.opts.map((o,i)=>`
+      <button class="opt-btn" onclick="mockCheckMCQ(this,${i===q.ans})">
+        <span class="opt-letter">${letters[i]}</span>${o}
+      </button>`).join('')}</div>`;
+  } else {
+    inner=`<input class="fill-input" id="mock-fill" placeholder="Type your answer…" onkeydown="if(event.key==='Enter')mockSubmit()">`;
+  }
+  document.getElementById('mock-q-area').innerHTML=`
+    <div class="q-card">
+      <div class="q-card-header">
+        <span class="q-tag">${topicName.toUpperCase()}</span>
+        <span class="q-num">Q${mockIdx+1}/25</span>
+      </div>
+      <div class="q-text">${q.q}</div>
+      ${inner}
+      <div class="explanation" id="mock-expl"><div class="expl-label">📚 Explanation</div>${q.explain||''}</div>
+    </div>`;
+}
+function mockCheckMCQ(el, correct) {
+  document.querySelectorAll('#mock-q-area .opt-btn').forEach(b=>b.disabled=true);
+  el.classList.add(correct?'correct':'wrong');
+  if(correct) mockScore++;
+  document.getElementById('mock-expl')?.classList.add('show');
+  document.getElementById('mock-score-live').textContent=mockScore;
+  setTimeout(()=>{ mockIdx++; renderMockQ(); }, 1200);
+}
+function mockSubmit() {
+  const inp=document.getElementById('mock-fill');
+  const q=mockQuestions[mockIdx];
+  if(!inp||!q) return;
+  const val=inp.value.trim().toLowerCase();
+  const ans=q.ans.toLowerCase();
+  const correct=val===ans||ans.includes(val)||val.includes(ans);
+  inp.classList.add(correct?'correct':'wrong');
+  inp.disabled=true;
+  if(correct) mockScore++;
+  document.getElementById('mock-expl')?.classList.add('show');
+  document.getElementById('mock-score-live').textContent=mockScore;
+  setTimeout(()=>{ mockIdx++; renderMockQ(); },1200);
+}
+function mockSkip(){ mockIdx++; renderMockQ(); }
+function mockEnd(){ clearInterval(mockTimer); mockShowResults(); }
+function mockShowResults() {
+  document.getElementById('mock-exam').style.display='none';
+  document.getElementById('mock-results').style.display='block';
+  const pct=Math.round((mockScore/25)*100);
+  const elapsed=Math.round((Date.now()-mockStartTime)/1000);
+  const mins=Math.floor(elapsed/60),secs=elapsed%60;
+  document.getElementById('mock-pct').textContent=pct+'%';
+  document.getElementById('mr-correct').textContent=mockScore;
+  document.getElementById('mr-wrong').textContent=25-mockScore;
+  document.getElementById('mr-time').textContent=mins+'m '+secs+'s';
+  let grade,colour,msg;
+  if(pct>=85){grade='A';colour='var(--accent)';msg='Outstanding! 🎉';}
+  else if(pct>=70){grade='B';colour='var(--accent4)';msg='Well done! 👏';}
+  else if(pct>=60){grade='C';colour='var(--accent3)';msg='Good effort! 😊';}
+  else if(pct>=45){grade='D';colour='#ff9f43';msg='Keep revising! 📚';}
+  else{grade='No Award';colour='var(--accent2)';msg="Don't give up! 💪";}
+  const g=document.getElementById('mock-grade');
+  g.textContent='Grade '+grade; g.style.background=colour+'22';
+  g.style.color=colour; g.style.border=`1px solid ${colour}44`;
+  document.getElementById('mock-msg').textContent=msg;
+  const circ=2*Math.PI*54, offset=circ-(pct/100)*circ;
+  const ring=document.getElementById('mock-ring');
+  ring.style.strokeDasharray=circ; ring.style.stroke=colour;
+  ring.style.strokeDashoffset=circ;
+  setTimeout(()=>{ ring.style.transition='stroke-dashoffset 1s ease'; ring.style.strokeDashoffset=offset; },100);
+}
+function restartMock(){ startMock(mockPaperType); }
+
+// ── WORKSHEET ENGINE ──
+function wsSwitchSheet(idx) {
+  wsSheet=idx;
+  document.querySelectorAll('.ws-tab').forEach((t,i)=>t.classList.toggle('wta',i===idx));
+  document.querySelectorAll('.ws-sheet2').forEach((s,i)=>{ s.classList.remove('wsa'); if(i===idx) s.classList.add('wsa'); });
+  updateWsStrip();
+}
+function wsMCQ(qid, el, correct) {
+  const q=document.getElementById(qid);
+  if(q.dataset.done==='1') return;
+  q.dataset.done='1';
+  q.querySelectorAll('.ws-opt2').forEach(o=>{o.disabled=true;o.onclick=null;});
+  el.classList.add(correct?'wc':'ww');
+  document.getElementById(qid+'-r')?.classList.add('show');
+  q.classList.add(correct?'ok':'bad');
+  wsRecord(correct);
+}
+function wsEq(qid, ids, answers) {
+  const q=document.getElementById(qid);
+  if(q.dataset.done==='1') return;
+  let allOk=true;
+  ids.forEach((id,i)=>{
+    const inp=document.getElementById(id);
+    if(!inp) return;
+    const v=inp.value.trim().toLowerCase().replace(/[^a-z0-9\- ]/g,'');
+    const a=answers[i].toLowerCase().replace(/[^a-z0-9\- ]/g,'');
+    const ok=v===a||v.includes(a)||a.includes(v)||(v.length>2&&(a.startsWith(v)||v.startsWith(a)));
+    inp.classList.add(ok?'ec':'ew'); inp.disabled=true;
+    if(!ok) allOk=false;
+  });
+  q.dataset.done='1';
+  q.classList.add(allOk?'ok':'bad');
+  document.getElementById(qid+'-r')?.classList.add('show');
+  q.querySelector('.ws-check').disabled=true;
+  wsRecord(allOk);
+}
+function wsPunnett(qid, ids, answers) {
+  const q=document.getElementById(qid);
+  if(q.dataset.done==='1') return;
+  let allOk=true;
+  ids.forEach((id,i)=>{
+    const inp=document.getElementById(id);
+    if(!inp) return;
+    const ok=inp.value.trim().toUpperCase()===answers[i];
+    const cell=inp.closest('.pun-cell');
+    if(cell) cell.classList.add(ok?'pc':'pw');
+    inp.disabled=true;
+    if(!ok){ allOk=false; inp.value=answers[i]; }
+  });
+  q.dataset.done='1';
+  q.classList.add(allOk?'ok':'bad');
+  document.getElementById(qid+'-r')?.classList.add('show');
+  q.querySelector('.ws-check').disabled=true;
+  wsRecord(allOk);
+}
+function wsReveal(qid) {
+  const q=document.getElementById(qid);
+  if(q.dataset.done==='1') return;
+  q.dataset.done='1';
+  const ta=document.getElementById(qid+'-ta');
+  if(ta){ ta.disabled=true; ta.classList.add(ta.value.trim().length>10?'ec':'ew'); }
+  document.getElementById(qid+'-r')?.classList.add('show');
+  q.querySelector('.ws-check').disabled=true;
+  q.classList.add('ok');
+  wsRecord(true);
+}
+function wsRecord(ok) {
+  wsScores[wsSheet].t++;
+  if(ok) wsScores[wsSheet].c++;
+  updateWsStrip();
+}
+function updateWsStrip() {
+  const s=wsScores[wsSheet];
+  const strip=document.getElementById('ws-score-strip');
+  if(s.t===0){ strip.style.display='none'; return; }
+  strip.style.display='flex';
+  const pct=Math.round((s.c/s.t)*100);
+  document.getElementById('ws-score-num').textContent=s.c+'/'+s.t;
+  document.getElementById('ws-score-fill2').style.width=pct+'%';
+  const msg=pct>=80?'🌟 Excellent! On track for an A/B!':pct>=60?'👍 Good — review what you missed':'📚 Keep revising — read the model answers';
+  document.getElementById('ws-score-msg').textContent=msg;
+}
+function wsMarkAll(idx) {
+  const prev=wsSheet; wsSheet=idx;
+  WS_IDS[idx].forEach(qid=>{
+    const q=document.getElementById(qid);
+    if(!q||q.dataset.done==='1') return;
+    document.getElementById(qid+'-r')?.classList.add('show');
+    q.querySelectorAll('.eq-in').forEach(i=>{ if(!i.disabled){i.disabled=true;i.classList.add('ew');} });
+    q.querySelectorAll('.pun-in').forEach(i=>{ if(!i.disabled){i.disabled=true;i.closest('.pun-cell')?.classList.add('pw');} });
+    q.querySelectorAll('.ws-ta').forEach(ta=>{ if(!ta.disabled){ta.disabled=true;ta.classList.add('ew');} });
+    q.dataset.done='1'; q.classList.add('bad');
+    q.querySelectorAll('.ws-check').forEach(b=>b.disabled=true);
+    wsRecord(false);
+  });
+  wsSheet=prev; updateWsStrip();
+}
+function wsReset2(idx) {
+  wsScores[idx]={c:0,t:0};
+  WS_IDS[idx].forEach(qid=>{
+    const q=document.getElementById(qid);
+    if(!q) return;
+    q.dataset.done='0'; q.className='ws-q';
+    document.getElementById(qid+'-r')?.classList.remove('show');
+    q.querySelectorAll('.ws-opt2').forEach(o=>{ o.classList.remove('wc','ww'); o.disabled=false; });
+    q.querySelectorAll('.eq-in').forEach(i=>{ i.value=''; i.disabled=false; i.classList.remove('ec','ew'); });
+    q.querySelectorAll('.pun-in').forEach(i=>{ i.value=''; i.disabled=false; i.closest('.pun-cell')?.classList.remove('pc','pw'); });
+    q.querySelectorAll('.ws-ta').forEach(ta=>{ ta.disabled=false; ta.classList.remove('ec','ew'); });
+    q.querySelectorAll('.ws-check').forEach(b=>b.disabled=false);
+  });
+  if(wsSheet===idx) updateWsStrip();
+}
+
+// ── TOPICS PAGE ──
+function renderTopicPage() {
+  const g=document.getElementById('topic-grid-page');
+  g.innerHTML='';
+  TOPICS.forEach(t=>{
+    const qs=QUESTIONS.filter(q=>q.topic===t.id).length;
+    const st=topicStats[t.id]||{a:0,c:0};
+    const pct=st.a>0?Math.round((st.c/st.a)*100):0;
+    const div=document.createElement('div');
+    div.className='topic-card sel';
+    div.innerHTML=`<div class="topic-icon">${t.icon}</div>
+      <div class="topic-name">${t.name}</div>
+      <div class="topic-count">${qs} questions</div>
+      <div class="topic-sub-text">${t.sub||''}</div>
+      <div class="topic-prog"><div class="topic-prog-fill" style="width:${pct}%"></div></div>`;
+    div.onclick=()=>{
+      document.getElementById('topic-sel').value=t.id;
+      nav('practice');
+      newQuestion();
+    };
+    g.appendChild(div);
+  });
+}
+
+// ── PROGRESS ──
+function renderProgress() {
+  document.getElementById('ps-total').textContent=totalAnswered;
+  document.getElementById('ps-correct').textContent=totalCorrect;
+  document.getElementById('ps-streak').textContent=bestStreak;
+  document.getElementById('ps-xp').textContent=xp;
+  const rows=document.getElementById('topic-prog-rows');
+  rows.innerHTML='';
+  TOPICS.forEach(t=>{
+    const st=topicStats[t.id]||{a:0,c:0};
+    const pct=st.a>0?Math.round((st.c/st.a)*100):0;
+    rows.innerHTML+=`<div class="prog-topic-row">
+      <div class="prog-topic-name">${t.icon} ${t.name}</div>
+      <div class="prog-topic-bar-wrap">
+        <div class="prog-topic-bar"><div class="prog-topic-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="prog-topic-pct">${st.a>0?pct+'%':'—'}</div>
+    </div>`;
+  });
+}
+function resetAllProgress() {
+  if(!confirm('Reset all progress? This cannot be undone.')) return;
+  xp=0;level=1;streak=0;bestStreak=0;totalAnswered=0;totalCorrect=0;
+  topicStats={cell_bio:{a:0,c:0},multicell:{a:0,c:0},life_earth:{a:0,c:0}};
+  dailyDone=0;
+  saveState(); updateTopbar(); updateGoal(0); renderProgress();
+}
+
+// ── SETTINGS ──
+function saveSettings() {
+  const name=document.getElementById('set-name').value.trim();
+  dailyGoal=parseInt(document.getElementById('set-goal').value)||10;
+  if(name) {
+    document.querySelector('.topbar-logo').innerHTML=`🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${name}'s <span>Bio</span>`;
+  }
+  saveState();
+  const btn=document.querySelector('#page-settings .btn-green');
+  btn.textContent='✅ Saved!';
+  setTimeout(()=>btn.textContent='💾 Save',1500);
+}
+
+// ── UTILS ──
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+// ── INIT ──
+updateTopbar();
+updateGoal(0);
+newQuestion();
+</script>
+</body>
+</html>
