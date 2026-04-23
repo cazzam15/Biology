@@ -519,7 +519,7 @@ button{font-family:'Nunito',sans-serif;cursor:pointer}
 <div class="page active" id="page-practice">
   <div class="hero">
     <h1>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Nat 5 <span>Biology</span><br>Scotland</h1>
-    <p>SQA-verified · 78 questions · 3 units · earn XP as you go!</p>
+    <p>SQA-verified · 103 questions · 4 topics incl. Problem Solving · earn XP as you go!</p>
   </div>
 
   <div class="goal-bar" id="goal-bar">
@@ -535,6 +535,7 @@ button{font-family:'Nunito',sans-serif;cursor:pointer}
       <option value="cell_bio">🔬 Cell Biology</option>
       <option value="multicell">🦠 Multicellular Organisms</option>
       <option value="life_earth">🌍 Life on Earth</option>
+      <option value="problem">🧪 Problem Solving</option>
     </select>
     <select class="selector" id="type-sel">
       <option value="all">All Types</option>
@@ -572,6 +573,7 @@ button{font-family:'Nunito',sans-serif;cursor:pointer}
       <option value="cell_bio">🔬 Cell Biology</option>
       <option value="multicell">🦠 Multicellular Organisms</option>
       <option value="life_earth">🌍 Life on Earth</option>
+      <option value="problem">🧪 Problem Solving</option>
     </select>
     <button class="btn btn-blue" onclick="startFlashcards()" style="flex:0;padding:8px 16px;border-radius:10px;font-size:0.82rem">▶ Start</button>
   </div>
@@ -1073,6 +1075,7 @@ const TOPICS = [
   { id: 'cell_bio', name: 'Cell Biology', icon: '🔬', sub: 'Cell structure · Transport · DNA & proteins · Enzymes · Genetic engineering · Respiration' },
   { id: 'multicell', name: 'Multicellular Organisms', icon: '🦠', sub: 'Mitosis · Nervous & hormonal · Reproduction · Variation & Inheritance · Transport systems · Absorption' },
   { id: 'life_earth', name: 'Life on Earth', icon: '🌍', sub: 'Ecosystems · Distribution · Photosynthesis · Energy · Food production · Evolution' },
+  { id: 'problem', name: 'Problem Solving', icon: '🧪', sub: 'Data interpretation · Experimental design · Graphs · Calculations · Scientific reasoning' },
 ];
 
 const QUESTIONS = [
@@ -1293,6 +1296,82 @@ const QUESTIONS = [
   {topic:'life_earth', type:'fillin', q:'Organisms that make their own food using light energy are called _____.', ans:'producers', explain:'Producers (autotrophs) — mainly green plants and algae — use photosynthesis to convert light energy, CO₂, and water into glucose. They form the base of every food chain and food web.'},
   {topic:'life_earth', type:'fillin', q:'The role an organism plays in its ecosystem, including what it eats and where it lives, is called its _____.', ans:'niche', explain:'A niche describes everything about how a species lives in its ecosystem. No two species can occupy exactly the same niche indefinitely — one will outcompete the other (competitive exclusion principle).'},
   {topic:'life_earth', type:'fillin', q:'The maximum population size that an environment can sustainably support is called the _____.', ans:'carrying capacity', explain:'Carrying capacity is determined by available resources (food, water, space, light). When a population exceeds its carrying capacity, resources become limiting, increasing competition, predation, and disease — reducing the population.'},
+
+  // ══════════════════════════════════════
+  // PROBLEM SOLVING (25 questions)
+  // SQA-style data interpretation, experimental design, calculations & reasoning
+  // ══════════════════════════════════════
+  {topic:'problem',type:'mcq',q:'A student measures the height of 30 pea plants, recording values from 12 cm to 48 cm. What type of variation does this show?',
+    opts:['Discrete variation — only distinct categories','Continuous variation — a range of values with no distinct categories','Genetic variation only, not affected by environment','Discontinuous — only two possible phenotypes'],
+    ans:1,explain:'Continuous variation shows a range of values with no clear categories (e.g. height, mass). It is influenced by both genes AND environment. Discontinuous variation has distinct categories (e.g. blood group, tongue rolling).'},
+  {topic:'problem',type:'mcq',q:'A student tests the effect of light intensity on photosynthesis in pondweed, counting oxygen bubbles per minute at different distances from a lamp. Which variable is the DEPENDENT variable?',
+    opts:['The distance of the lamp from the pondweed','The temperature of the water','The number of oxygen bubbles produced per minute','The type of pondweed used'],
+    ans:2,explain:'The dependent variable is what you MEASURE. Independent variable = what you CHANGE (lamp distance). Control variables = what you KEEP THE SAME (temperature, pondweed type, water volume).'},
+  {topic:'problem',type:'mcq',q:'An enzyme experiment tests amylase at pH 3, 5, 7, 9 and 11. At pH 7 starch breaks down in 2 minutes; at pH 9 it takes 8 minutes. What can be concluded?',
+    opts:['pH has no effect on enzyme activity','The enzyme works faster at pH 9 than pH 7','The enzyme works faster at pH 7 — it is closer to the optimum pH','The enzyme is denatured at pH 7'],
+    ans:2,explain:'Faster breakdown = shorter time. 2 min at pH 7 vs 8 min at pH 9 means pH 7 is closer to the optimum for this enzyme. Above the optimum pH, the active site shape changes, slowing the reaction.'},
+  {topic:'problem',type:'mcq',q:'A student counts daisies in 10 quadrats (1m² each): 3, 5, 2, 4, 6, 3, 5, 4, 3, 5. What is the mean number of daisies per m²?',
+    opts:['3.5','4.0','4.5','5.0'],
+    ans:1,explain:'Mean = total ÷ number of samples. Total = 3+5+2+4+6+3+5+4+3+5 = 40. Mean = 40 ÷ 10 = 4.0 daisies per m². Quadrat sampling estimates population density across a larger area.'},
+  {topic:'problem',type:'mcq',q:'Potato cylinders are placed in sucrose solutions. A cylinder in 0.2M sucrose GAINS mass. What does this tell you about the potato cells?',
+    opts:['Potato cells have higher water concentration than 0.2M sucrose','Potato cells have lower water concentration than 0.2M sucrose','Potato cells are denatured in sucrose','Osmosis does not occur in potato cells'],
+    ans:0,explain:'If the potato gains mass, water moves INTO the cells by osmosis. Water moves from HIGH water concentration to LOW. So potato cells have HIGHER water concentration than 0.2M sucrose solution.'},
+  {topic:'problem',type:'mcq',q:'Germinating seeds are sealed in a flask with limewater, which turns milky in CO₂. After 30 minutes limewater turns milky. A control with boiled seeds stays clear. What conclusion can be drawn?',
+    opts:['Only boiled seeds respire','Living seeds produce CO₂ during respiration; dead seeds do not','Limewater only reacts with living organisms','Boiled seeds produce more oxygen'],
+    ans:1,explain:'Living seeds turn limewater milky (CO₂ produced by respiration). Dead boiled seeds show no change. The control confirms it is LIVING cells that carry out respiration and produce CO₂.'},
+  {topic:'problem',type:'mcq',q:'A graph shows hare and lynx populations over 20 years. Hare numbers peak, then lynx numbers peak shortly after. What relationship does this show?',
+    opts:['The two species compete for the same food','A predator-prey cycle — lynx numbers follow hare numbers with a time lag','Mutualism between hares and lynx','Lynx population is unaffected by hare numbers'],
+    ans:1,explain:'Classic predator-prey cycle: more hares = more food for lynx → lynx rise. More lynx = more hares eaten → hares fall. Fewer hares = less food → lynx fall. The predator peak always lags behind the prey peak.'},
+  {topic:'problem',type:'mcq',q:'A potometer measures 2 cm³ water absorbed per hour in still air. With a fan, it records 7 cm³ per hour. What explains this increase?',
+    opts:['The fan increases water temperature','Moving air removes water vapour from stomata, increasing the diffusion gradient and transpiration rate','The fan increases light intensity on leaves','Moving air increases photosynthesis rate'],
+    ans:1,explain:'Wind removes water vapour from around stomata, steepening the diffusion gradient between humid leaf interior and drier outside air. Steeper gradient = faster transpiration rate.'},
+  {topic:'problem',type:'mcq',q:'CO₂ production in yeast increases from 10°C to 40°C, then drops sharply at 50°C. Why does it drop at 50°C?',
+    opts:['Yeast runs out of glucose at 50°C','Yeast enzymes are denatured at 50°C — active site changes shape and no longer functions','CO₂ dissolves in water at 50°C','The reaction becomes anaerobic at 50°C'],
+    ans:1,explain:'At 50°C, yeast respiratory enzymes are denatured — the active site changes shape irreversibly. Substrates can no longer bind, so respiration stops and CO₂ production drops sharply above the optimum temperature.'},
+  {topic:'problem',type:'mcq',q:'A tall pea plant (TT) is crossed with a dwarf plant (tt). What proportion of offspring will be tall?',
+    opts:['0% — all will be dwarf','25% tall','50% tall','100% — all will be tall'],
+    ans:3,explain:'TT × tt: all offspring are Tt. Since T (tall) is DOMINANT over t (dwarf), ALL Tt offspring are tall. Ratio = 4 tall : 0 dwarf = 100% tall. This is a monohybrid cross with complete dominance.'},
+  {topic:'problem',type:'mcq',q:'A scientist studies moths in polluted (dark bark) areas vs rural (light bark) areas. Dark moths are much more common in polluted areas. What explains this?',
+    opts:['Dark moths chose to move to polluted areas','Dark moths are better camouflaged on dark bark — survive predation more and reproduce more, increasing dark allele frequency','Pollution causes moths to turn dark within their lifetime','Light moths are killed directly by pollution chemicals'],
+    ans:1,explain:'This is natural selection (the peppered moth). On dark bark, dark moths are better camouflaged → fewer eaten by predators → more survive and reproduce → dark allele becomes more common. Moths do NOT change colour during their lifetime — selection acts on existing variation.'},
+  {topic:'problem',type:'mcq',q:'At high light intensity, increasing light further has NO further effect on photosynthesis rate. What is the most likely reason?',
+    opts:['The plant has run out of water','Another factor such as CO₂ concentration or temperature has become the limiting factor','Light intensity has no effect on photosynthesis','The plant has produced too much oxygen'],
+    ans:1,explain:'When increasing one factor stops increasing the rate, another factor is now LIMITING. At high light intensity, CO₂ concentration or temperature becomes the limiting factor — these must be increased to further boost the rate.'},
+  {topic:'problem',type:'mcq',q:'In a food chain: Grass (10,000 kJ) → Rabbits → Foxes. Approximately how much energy is available to foxes?',
+    opts:['10,000 kJ','1,000 kJ','100 kJ','5,000 kJ'],
+    ans:2,explain:'Only ~10% transfers between trophic levels. Grass→Rabbits: 10,000 × 10% = 1,000 kJ. Rabbits→Foxes: 1,000 × 10% = 100 kJ. ~90% is lost as heat at each level through respiration, movement, and waste.'},
+  {topic:'problem',type:'mcq',q:'A mark-release-recapture study catches 40 beetles (marked and released), then catches 50 beetles of which 8 are marked. What is the estimated population?',
+    opts:['200','250','400','100'],
+    ans:1,explain:'Population = (First catch × Second catch) ÷ Recaptured marked = (40 × 50) ÷ 8 = 2000 ÷ 8 = 250 beetles. Assumes: marked animals mix randomly, no births/deaths/immigration between catches.'},
+  {topic:'problem',type:'mcq',q:'A student adds iodine solution to a slice of potato. The iodine turns blue-black. What does this indicate?',
+    opts:['The potato contains glucose','The potato contains starch','The potato contains protein','The potato contains lipids'],
+    ans:1,explain:'Iodine solution (brown) turns BLUE-BLACK in the presence of STARCH. Potatoes store glucose as starch. Other food tests: Benedict\'s solution = reducing sugars (glucose); Biuret reagent = protein; ethanol emulsion test = lipids.'},
+  {topic:'problem',type:'mcq',q:'A student notices plants grow towards light. What is the BEST control for an experiment to test if light causes this?',
+    opts:['Use a different species of plant','Grow a plant in complete darkness with all other conditions identical','Water one plant more than the other','Use different sized pots'],
+    ans:1,explain:'A control group is identical to the experimental group EXCEPT for the one variable being tested. A plant in complete darkness (no light stimulus) controls for light. If the experimental plant bends towards light but the control grows straight, light is confirmed as the cause.'},
+  {topic:'problem',type:'mcq',q:'A student tests amylase from mouth saliva (optimum pH ~7) and amylase from a fungus (optimum pH ~4). At pH 4, which will work faster?',
+    opts:['Mouth amylase — it is always faster','Fungal amylase — it is at its optimum pH of 4','Both will work equally well at pH 4','Neither enzyme works at pH 4'],
+    ans:1,explain:'Each enzyme has its own optimum pH at which its active site shape is most complementary to the substrate. At pH 4, fungal amylase is at its optimum and works fastest. Mouth amylase is far from its optimum (pH 7) and will be much slower or inactive.'},
+  {topic:'problem',type:'mcq',q:'A scientist measures oxygen consumption of a mouse at 5°C (2.4 ml/min), 10°C (1.6 ml/min), and 20°C (0.8 ml/min). What trend does this show and why?',
+    opts:['Oxygen consumption decreases as temperature increases because metabolism slows','Oxygen consumption increases as temperature decreases because the mouse must generate more heat to maintain body temperature','Temperature has no effect on oxygen consumption in mammals','Oxygen consumption increases as temperature increases because enzymes work faster'],
+    ans:1,explain:'Mammals are warm-blooded (endothermic) — they maintain a constant body temperature. In colder environments they must increase metabolic rate to generate more heat, which requires MORE oxygen. This is the opposite of cold-blooded organisms.'},
+  {topic:'problem',type:'mcq',q:'A half-life of a radioactive isotope is 5,000 years. A sample now contains 12.5% of the original amount. How old is the sample?',
+    opts:['5,000 years','10,000 years','15,000 years','20,000 years'],
+    ans:2,explain:'Each half-life halves the amount: 100%→50% (5,000 yrs)→25% (10,000 yrs)→12.5% (15,000 yrs). Three half-lives = 3 × 5,000 = 15,000 years. Radiometric dating uses this principle to estimate ages of fossils.'},
+  {topic:'problem',type:'mcq',q:'A student sees cells under a microscope with: no nucleus visible, no membrane-bound organelles, and a cell wall. What type of cell is this?',
+    opts:['Animal cell','Plant cell','Fungal cell','Bacterial (prokaryotic) cell'],
+    ans:3,explain:'Prokaryotic (bacterial) cells: no nuclear membrane, no membrane-bound organelles, smaller ribosomes, cell wall (peptidoglycan). Eukaryotic cells (plant, animal, fungal) all have a true nucleus and membrane-bound organelles.'},
+  {topic:'problem',type:'fillin',q:'In an experiment, the variable that the scientist deliberately changes is called the _____ variable.',
+    ans:'independent',explain:'The independent variable is what the scientist changes (e.g. temperature, pH, light intensity). The dependent variable is what is measured. Control variables are kept constant to make it a fair test.'},
+  {topic:'problem',type:'fillin',q:'In an experiment, the variable that is measured to show the effect of changes is called the _____ variable.',
+    ans:'dependent',explain:'The dependent variable is the result you measure — it depends on the independent variable. E.g. If testing temperature on enzyme activity: temperature = independent, reaction rate = dependent.'},
+  {topic:'problem',type:'fillin',q:'The formula for estimating population using mark-release-recapture is: Population = (First catch × Second catch) ÷ number of _____ individuals in the second catch.',
+    ans:'marked',explain:'Population estimate = (N1 × N2) ÷ M2. N1 = first catch marked, N2 = total second catch, M2 = marked individuals in second catch. Assumes random mixing and no population changes between captures.'},
+  {topic:'problem',type:'fillin',q:'When an enzyme stops working above a certain temperature because its active site changes shape irreversibly, the enzyme has been _____.',
+    ans:'denatured',explain:'Denaturation: above the optimum temperature, bonds holding the enzyme\'s 3D shape are disrupted. The active site changes shape permanently — the substrate no longer fits. Unlike inhibition, denaturation cannot be reversed by cooling.'},
+  {topic:'problem',type:'fillin',q:'In an energy pyramid, only approximately _____% of energy is transferred from one trophic level to the next.',
+    ans:'10',explain:'Only ~10% of energy passes to the next trophic level — about 90% is lost as heat through respiration, movement, and waste. This limits food chain length to typically 4–5 links.'},
+
 ];
 
 
@@ -1301,7 +1380,7 @@ const QUESTIONS = [
 // ═══════════════════════════════════════
 let xp = 0, level = 1, streak = 0, bestStreak = 0;
 let totalAnswered = 0, totalCorrect = 0;
-let topicStats = { cell_bio:{a:0,c:0}, multicell:{a:0,c:0}, life_earth:{a:0,c:0} };
+let topicStats = { cell_bio:{a:0,c:0}, multicell:{a:0,c:0}, life_earth:{a:0,c:0}, problem:{a:0,c:0} };
 let dailyGoal = 10, dailyDone = 0;
 let quizPool = [], quizIdx = 0;
 let currentQ = null;
@@ -1411,7 +1490,7 @@ function renderQ(q) {
   if (q.type==='mcq') {
     const shuffledOpts = q.opts.map((o,i)=>({o,correct:i===q.ans}));
     inner = `<div class="opts">${shuffledOpts.map((op,i)=>`
-      <button class="opt-btn" onclick="checkMCQ(this,${op.correct})">
+      <button class="opt-btn" data-correct="${op.correct}" onclick="checkMCQ(this,${op.correct})">
         <span class="opt-letter">${letters[i]}</span>${op.o}
       </button>`).join('')}</div>`;
   } else {
@@ -1441,8 +1520,9 @@ function checkMCQ(el, correct) {
   document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
   el.classList.add(correct?'correct':'wrong');
   if (!correct) {
+    // Only highlight the single correct button, not all non-wrong ones
     document.querySelectorAll('.opt-btn').forEach(b=>{
-      if(!b.classList.contains('wrong')) b.classList.add('correct');
+      if(b.dataset.correct==='true') b.classList.add('correct');
     });
   }
   recordAnswer(correct, currentQ?.topic);
@@ -1544,7 +1624,7 @@ function renderMockQ() {
   let inner='';
   if(q.type==='mcq'){
     inner=`<div class="opts">${q.opts.map((o,i)=>`
-      <button class="opt-btn" onclick="mockCheckMCQ(this,${i===q.ans})">
+      <button class="opt-btn" data-correct="${i===q.ans}" onclick="mockCheckMCQ(this,${i===q.ans})">
         <span class="opt-letter">${letters[i]}</span>${o}
       </button>`).join('')}</div>`;
   } else {
@@ -1564,10 +1644,15 @@ function renderMockQ() {
 function mockCheckMCQ(el, correct) {
   document.querySelectorAll('#mock-q-area .opt-btn').forEach(b=>b.disabled=true);
   el.classList.add(correct?'correct':'wrong');
+  if (!correct) {
+    document.querySelectorAll('#mock-q-area .opt-btn').forEach(b=>{
+      if(b.dataset.correct==='true') b.classList.add('correct');
+    });
+  }
   if(correct) mockScore++;
   document.getElementById('mock-expl')?.classList.add('show');
   document.getElementById('mock-score-live').textContent=mockScore;
-  setTimeout(()=>{ mockIdx++; renderMockQ(); }, 1200);
+  setTimeout(()=>{ mockIdx++; renderMockQ(); }, 1400);
 }
 function mockSubmit() {
   const inp=document.getElementById('mock-fill');
@@ -1773,7 +1858,7 @@ function renderProgress() {
 function resetAllProgress() {
   if(!confirm('Reset all progress? This cannot be undone.')) return;
   xp=0;level=1;streak=0;bestStreak=0;totalAnswered=0;totalCorrect=0;
-  topicStats={cell_bio:{a:0,c:0},multicell:{a:0,c:0},life_earth:{a:0,c:0}};
+  topicStats={cell_bio:{a:0,c:0},multicell:{a:0,c:0},life_earth:{a:0,c:0},problem:{a:0,c:0}};
   dailyDone=0;
   saveState(); updateTopbar(); updateGoal(0); renderProgress();
 }
