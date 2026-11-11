@@ -77,6 +77,11 @@ function toast(msg){
 // Fill-in marking: forgiving on case, punctuation and small extras
 const norm=s=>String(s).toLowerCase().replace(/[^a-z0-9%\- ]/g,'').replace(/\s+/g,' ').trim();
 function fillCorrect(given,answer){
+  // Numeric answers must match exactly: "100" must not be accepted for "10", or "13" for "3".
+  if(/^[\d.,\s£%-]+$/.test(String(answer).trim())){
+    const num=x=>parseFloat(String(x).replace(/[^\d.\-]/g,''));
+    return /\d/.test(String(given))&&num(given)===num(answer);
+  }
   const v=norm(given),a=norm(answer);
   if(!v)return false;
   if(v===a||v.includes(a))return true;
